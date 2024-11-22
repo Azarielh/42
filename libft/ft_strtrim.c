@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:17:14 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/18 23:32:24 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/11/21 23:28:00 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/11/22 02:39:15 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-int	ft_atoi(const char *str)
+static int	is_in_set(char c, const char *set)
 {
-	size_t	result;
-	int		sign;
-	int		i;
+	while (*set)
+	{
+		if (c == *set)
+			return (1);
+		set++;
+	}
+	return (0);
+}
 
-	// securiser si depassement du long max
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return ((int)(result * sign));
+char	*ft_strtrim(char const *str, char const *set)
+{
+	size_t	start;
+	size_t	end;
+
+	if (!str || !set)
+		return (NULL);
+	start = 0;
+	end = ft_strlen(str);
+	while (str[start] && is_in_set(str[start], set))
+		start++;
+	while (end > start && is_in_set(str[end - 1], set))
+		end--;
+	return (ft_substr(str, start, end - start));
 }

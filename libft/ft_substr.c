@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:17:14 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/18 23:32:24 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/11/21 20:51:46 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/11/21 20:59:16 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-int	ft_atoi(const char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	result;
-	int		sign;
-	int		i;
+	char	*new_string;
+	size_t	s_len;
+	size_t	copy_len;
 
-	// securiser si depassement du long max
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return ((int)(result * sign));
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	copy_len = s_len - start;
+	if (copy_len > len)
+		copy_len = len;
+	new_string = (char *)malloc(sizeof(char) * (copy_len + 1));
+	if (!new_string)
+		return (NULL);
+	ft_strlcpy(new_string, s + start, copy_len + 1);
+	return (new_string);
 }

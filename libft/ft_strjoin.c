@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:17:14 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/18 23:32:24 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/11/21 20:59:51 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/11/21 23:16:15 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-int	ft_atoi(const char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	result;
-	int		sign;
-	int		i;
+	size_t buff;
+	size_t i;
+	size_t j;
+	char *new_str;
 
-	// securiser si depassement du long max
-	result = 0;
-	sign = 1;
+	if (!s1 || !s2)
+		return (NULL);
+	buff = ft_strlen(s1) + ft_strlen(s2) + 1;
 	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	j = 0;
+	new_str = malloc(sizeof(char) * buff);
+	if (!new_str)
+		return (NULL);
+	while (s1[i])
 	{
-		if (str[i] == '-')
-			sign = -1;
+		new_str[i] = s1[i];
 		i++;
 	}
-	while (ft_isdigit(str[i]))
+	while (s2[j])
 	{
-		result = result * 10 + (str[i] - '0');
+		new_str[i] = s2[j];
 		i++;
+		j++;
 	}
-	return ((int)(result * sign));
+	new_str[i] = '\0';
+	return (new_str);
 }

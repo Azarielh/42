@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:17:14 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/18 23:32:24 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/11/09 10:20:29 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/11/18 23:21:22 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-int	ft_atoi(const char *str)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	result;
-	int		sign;
-	int		i;
+	size_t	i;
+	size_t	j;
+	size_t	destlen_origin;
+	size_t	src_len;
 
-	// securiser si depassement du long max
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return ((int)(result * sign));
+	destlen_origin = ft_strlen(dest);
+	src_len = ft_strlen(src);
+	if (size <= destlen_origin)
+		return (src_len + size);
+	i = ft_strlen(dest);
+	j = 0;
+	while (src[j] != '\0' && i < size - 1)
+		dest[i++] = src[j++];
+	dest[i] = '\0';
+	return (src_len + destlen_origin);
 }
