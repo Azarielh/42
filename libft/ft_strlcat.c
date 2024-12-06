@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:20:29 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/18 23:21:22 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:14:27 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	src_len = ft_strlen(src);
 	if (size <= destlen_origin)
 		return (src_len + size);
-	i = ft_strlen(dest);
+	i = destlen_origin;
 	j = 0;
 	while (src[j] != '\0' && i < size - 1)
 		dest[i++] = src[j++];

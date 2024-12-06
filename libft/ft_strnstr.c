@@ -6,45 +6,33 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 22:39:24 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/22 17:06:48 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:38:11 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	is_partof_big(const char c_of_b, const char c_of_l)
-{
-	return (c_of_b == c_of_l);
-}
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	size_t	start;
-	int		is_little_len;
 
-	if (!little)
-		return ((char *)big);
+	if (needle[0] == '\0')
+		return ((char *)haystack);
 	i = 0;
-	j = 0;
-	start = 0;
-	is_little_len = (i == (size_t)ft_strlen(little));
-	while (j < len && big[start])
+	while (haystack[i] && i < len)
 	{
-		i = 0;
-		while (is_partof_big(big[start], little[i]))
+		j = 0;
+		if (haystack[i] == needle[j])
 		{
-			start++;
-			i++;
+			while (haystack[i + j] == needle[j] && (i + j) < len && needle[j])
+			{
+				if (needle[j + 1] == '\0')
+					return ((char *)haystack + i);
+				j++;
+			}
 		}
-		if (is_little_len)
-			return ((char *)big + (start - i));
-		start++;
-		j++;
+		i++;
 	}
 	return (NULL);
 }
-
-// big += 1
-// big[1]

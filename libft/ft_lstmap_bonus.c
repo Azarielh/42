@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 23:24:03 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/04 23:29:02 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/12/04 22:51:08 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/12/06 15:32:05 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*new_lst;
+	t_list	*new_elem;
+	void	*to_apply;
 
-	i = 0;
-	while (i < n && ((unsigned char *)str1)[i] && ((unsigned char *)str2)[i])
+	if (!lst || !f || !del)
+		return (NULL);
+	new_lst = NULL;
+	while (lst)
 	{
-		if (((unsigned char *)str1)[i] != ((unsigned char *)str2)[i])
-			return (((unsigned char *)str1)[i] - ((unsigned char *)str2)[i]);
-		i++;
+		to_apply = f(lst->content);
+		new_elem = ft_lstnew(to_apply);
+		if (!new_elem)
+		{
+			del(to_apply);
+			ft_lstclear(&new_lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_lst, new_elem);
+		lst = lst->next;
 	}
-	if (i < n)
-		return (((unsigned char *)str1)[i] - ((unsigned char *)str2)[i]);
-	return (0);
+	return (new_lst);
 }

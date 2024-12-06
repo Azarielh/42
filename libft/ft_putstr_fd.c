@@ -6,17 +6,14 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 23:58:56 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/21 20:11:45 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:25:27 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <unistd.h>
 
 void	ft_putstr_fd(char *str, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		write(fd, &str[i++], 1);
+	write(fd, str, ft_strlen(str));
 }

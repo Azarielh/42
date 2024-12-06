@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 20:59:51 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/21 23:16:15 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:51:50 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t buff;
-	size_t i;
-	size_t j;
-	char *new_str;
+	size_t	buff;
+	size_t	i;
+	size_t	j;
+	char	*new_str;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -35,9 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	while (s2[j])
 	{
-		new_str[i] = s2[j];
-		i++;
-		j++;
+		new_str[i++] = s2[j++];
 	}
 	new_str[i] = '\0';
 	return (new_str);

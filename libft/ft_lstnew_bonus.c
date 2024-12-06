@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 22:48:56 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/06 03:08:03 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/11/30 00:55:38 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/12/04 22:04:04 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *str, int c, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	size_t				i;
-	unsigned char		ud_c;
-	const unsigned char	*ud_str;
+	t_list	*new_item;
 
-	i = 0;
-	ud_c = (unsigned char)c;
-	ud_str = (const unsigned char *)str;
-	while (i < n)
-	{
-		if (ud_str[i] == ud_c)
-			return ((void *)&ud_str[i]);
-		i++;
-	}
-	return (NULL);
+	new_item = (t_list *)malloc(sizeof(t_list));
+	if (!new_item)
+		return (NULL);
+	new_item->content = content;
+	new_item->next = NULL;
+	return (new_item);
 }

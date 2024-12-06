@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:58 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/22 17:56:16 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/06 00:23:12 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*dest;
+	size_t	overf;
 
-	if (nmemb > SIZE_MAX / size)
-		return (-1);
+	overf = nmemb * size;
+	if (size != 0 && nmemb != overf / size)
+		return (NULL);
 	dest = (void *)malloc(nmemb * size);
 	if (!dest)
 		return (NULL);

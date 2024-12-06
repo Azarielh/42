@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 03:32:23 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/18 23:56:47 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:24:40 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 char	*ft_strdup(const char *str)
 {
 	char	*dest;
-	int		len;
+	size_t	len;
 
-	// mettre un size_t
 	len = 0;
 	while (str[len])
 		len++;
