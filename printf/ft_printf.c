@@ -51,7 +51,7 @@ int	ft_printf(const char *str_to_print, ...)
 {
 	va_list	args;
 	int		i;
-	int		printed_len;
+	size_t	printed_len;
 
 	i = 0;
 	printed_len = 0;
@@ -61,27 +61,26 @@ int	ft_printf(const char *str_to_print, ...)
 		if (*str_to_print == '%' && *(str_to_print + 1))
 		{
 			str_to_print++;
-			// Handle the % char
-			if (*str_to_print == '%' && *(str_to_print + 1) == '%')
+			if (*str_to_print == '%') // Handle the % char
 				printed_len += ft_putchar_fd('%', 1);
-			if (*str_to_print == 'd') //	Print a dynamic integer
-				printed_len += ft_putnbr_fd(va_arg(args, int), 1);
+			if (*str_to_print == 'd') // Print a dynamic integer
+				printed_len += ft_putnbr_fd(va_arg(args, int), 1) - 1;
 			else if (*str_to_print == 's') // Print a dynamic string
 				printed_len += ft_putstr_fd(va_arg(args, char *), 1);
 			else if (*str_to_print == 'c') // Print a dynamic char
-				printed_len += ft_putchar_fd(va_arg(args, int), 1);
+				printed_len += ft_putchar_fd(va_arg(args, int), 1) - 1;
 			i++;
 		}
 		else
-			ft_putchar_fd(*str_to_print, 1); // Imprime les char non dynamique
+			printed_len += ft_putchar_fd(*str_to_print, 1) - 1; // Imprime les char non dynamique
 		str_to_print++;
 	}
 	va_end(args); // Libère la liste d'arguments
-	return (i);   // Retourne le nombre de spécificateurs comptés
+	return ((int)printed_len);   // Retourne le nombre de spécificateurs comptés
 }
 
 int	main(void)
 {
-	ft_printf("Tralalalala %s%d%c%%\n", "blabla", 5, 'c');
-	return (0);
+	int len = ft_printf(" %d%s\n", 10,"bla");
+	return (len);
 }
