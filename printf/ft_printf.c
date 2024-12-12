@@ -63,24 +63,25 @@ int	ft_printf(const char *str_to_print, ...)
 			str_to_print++;
 			if (*str_to_print == '%') // Handle the % char
 				printed_len += ft_putchar_fd('%', 1);
-			if (*str_to_print == 'd') // Print a dynamic integer
+			if (*str_to_print == 'd') // Print dynamics integers
 				printed_len += ft_putnbr_fd(va_arg(args, int), 1) - 1;
-			else if (*str_to_print == 's') // Print a dynamic string
+			else if (*str_to_print == 's') // Print dynamics strings
 				printed_len += ft_putstr_fd(va_arg(args, char *), 1);
-			else if (*str_to_print == 'c') // Print a dynamic char
+			else if (*str_to_print == 'c') // Print dynamics solos chars
 				printed_len += ft_putchar_fd(va_arg(args, int), 1) - 1;
 			i++;
 		}
 		else
-			printed_len += ft_putchar_fd(*str_to_print, 1) - 1; // Imprime les char non dynamique
+			printed_len += ft_putchar_fd(*str_to_print, 1) - 1;
+				// Imprime les char non dynamique
 		str_to_print++;
 	}
-	va_end(args); // Libère la liste d'arguments
-	return ((int)printed_len);   // Retourne le nombre de spécificateurs comptés
+	va_end(args);              // Libère la liste d'arguments
+	return ((int)printed_len); // Retourne le nombre de spécificateurs comptés
 }
 
 int	main(void)
 {
-	int len = ft_printf(" %d%s\n", 10,"bla");
+	int len = ft_printf(" %d%s\n", 10, "bla");
 	return (len);
 }

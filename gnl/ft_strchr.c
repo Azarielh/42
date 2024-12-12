@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 13:11:29 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/12 23:17:29 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/11/06 22:51:06 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/11/15 20:27:08 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdio.h>
+#include <string.h>
 
-# include <stdlib.h>
-# include <unistd.h>
+char	*ft_strchr(const char *str, int c)
+{
+	unsigned char	uc;
 
-// Taille du buffer pour les lectures
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s);
-char	*get_next_line(int fd);
-
-#endif
+	uc = (unsigned char)c;
+	while (*str != uc && *str)
+		str++;
+	if (*str != uc)
+		return (NULL);
+	else
+		return ((char *)str);
+}
