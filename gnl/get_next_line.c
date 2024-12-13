@@ -12,43 +12,27 @@
 
 #include "get_next_line.h"
 #include <string.h>
-#define BUFFER_SIZE 42
+#define BUFFER_SIZE 30
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	i;
 
-	i = 0;
-	if (size == i)
-		return (ft_strlen(src));
-	while (src[i] != '\0' && i < size - 1)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (ft_strlen(src));
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	char	*new_string;
-	size_t	s_len;
+	size_t	str_len;
 	size_t	copy_len;
 
-	if (!s)
+	if (!str)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
+	str_len = ft_strlen(str);
+	if (start >= str_len)
 		return (ft_strdup(""));
-	copy_len = s_len - start;
+	copy_len = str_len - start;
 	if (copy_len > len)
 		copy_len = len;
 	new_string = (char *)malloc(sizeof(char) * (copy_len + 1));
 	if (!new_string)
 		return (NULL);
-	ft_strlcpy(new_string, s + start, copy_len + 1);
-	return (new_string);
+	return (ft_strcpy(new_string, str + start));
 }
 
 static char *extract_line(char **storage)
