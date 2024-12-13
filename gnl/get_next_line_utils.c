@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+# include <unistd.h>
+
 
 size_t	ft_strlen(const char *str)
 {
@@ -30,6 +32,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	len2;
 	char	*result;
 
+	if (!s1 || !s2)
+		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	result = malloc(len1 + len2 + 1);
@@ -44,19 +48,32 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (result);
 }
 
-char	*ft_strdup(const char *s)
+char *ft_strcpy(char *dest, const char *src)
+{
+    size_t i;
+
+	i = 0;
+    while (src[i])
+	{
+        dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+    return (dest);
+}
+
+char	*ft_strdup(const char *str)
 {
 	size_t	len;
-	char	*dup;
+	char	*copy;
 
-	len = ft_strlen(s);
-	dup = malloc(len + 1);
-	if (!dup)
+	len = ft_strlen(str);
+	copy = malloc(len + 1);
+	if (!copy)
 		return (NULL);
-	for (size_t i = 0; i < len; i++)
-		dup[i] = s[i];
-	dup[len] = '\0';
-	return (dup);
+	ft_strcpy(copy, str);
+	copy[len] = '\0';
+	return (copy);
 }
 
 char	*ft_strchr(const char *str, int c)

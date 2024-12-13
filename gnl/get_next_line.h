@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+#include <string.h>
 
 // Taille du buffer pour les lectures
 # ifndef BUFFER_SIZE
@@ -22,6 +23,7 @@
 # endif
 
 size_t	ft_strlen(const char *str);
+char    *ft_strcpy(char *dest, const char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
 char	*get_next_line(int fd);
