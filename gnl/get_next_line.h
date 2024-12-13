@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:11:29 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/12 23:17:29 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:58:05 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@
 #  define BUFFER_SIZE 42
 # endif
 
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s);
-char	*get_next_line(int fd);
+size_t		gnl_strlen(const char *s);
+char		*gnl_strdup(const char *s1);
+char		*gnl_strchr(const char *s, int c);
+char		*gnl_strjoin(char *s1, char *s2);
+static char	*read_to_stash(int fd, char *stash);
+static char	*extract_line(char *stash);
+static char	*trim_stash(char *stash);
+char		*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 #endif
