@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:11:29 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/13 23:58:05 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/14 00:25:21 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
 
 // Taille du buffer pour les lectures
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 30
 # endif
 
 size_t		gnl_strlen(const char *s);
