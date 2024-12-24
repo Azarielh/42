@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 23:03:05 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/14 00:25:29 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/22 01:51:02 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	main(void)
 	line2 = get_next_line(fd);
 	printf("%s\n%s", line, line2);
 	close(fd);
-	printf("%s\n", line);
-	printf("%s\n", line2);
 	free(line);
+	free(line2);
 	return (0);
 }

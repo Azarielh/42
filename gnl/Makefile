@@ -3,7 +3,7 @@ NAME = get_next
 SRCS = get_next_line.c\
 		get_next_line_utils.c
 
-OBJS = $(SRCS)
+OBJS = $(SRCS:.c=.o)
 # Rules
 all: $(NAME)
 
