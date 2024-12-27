@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 12:13:22 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:15:40 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/12/12 23:03:05 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/12/27 14:53:03 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <string.h>
 
-# include <stdlib.h>
-# include <unistd.h>
+int	main(void)
+{
+	int		fd;
+	char	*line;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-int		ft_eol_finder(const char *s);
-size_t	ft_l(const char *s);
-char	*ft_strjoin(char *old_stack, char *buffer);
-char	*get_next_line(int fd);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_c(size_t num, size_t size);
-
-#endif
+	fd = open("test.txt", O_RDONLY);
+	for (int i = 0; i <= 6; i++)
+	{
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	}
+	close(fd);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:10:22 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:29:56 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:34:30 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*read_line(int fd, char *stack, char *buffer)
 	int	read_bytes;
 
 	if (!stack)
-		stack = ft_calloc_zero(1, sizeof(char));
+		stack = ft_cal_z(1, sizeof(char));
 	read_bytes = 1;
 	while (read_bytes > 0)
 	{
@@ -70,7 +70,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)ft_calloc_zero(BUFFER_SIZE + 1, sizeof(char));
+	buffer = (char *)ft_cal_z(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	stack = read_line(fd, stack, buffer);

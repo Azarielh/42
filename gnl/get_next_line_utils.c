@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:10:28 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:29:06 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:37:18 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_eol_finder(const char *s) // stcnl
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (!s)
@@ -30,7 +30,7 @@ int	ft_eol_finder(const char *s) // stcnl
 
 size_t	ft_strlen(const char *str) // ft_l
 {
-	size_t i;
+	size_t	i;
 
 	if (!str)
 		return (0);
@@ -46,8 +46,7 @@ char	*ft_strjoin(char *old_stack, char *buffer)
 	size_t	i;
 	size_t	j;
 
-	new_stack = (char *)ft_calloc_zero(ft_strlen(old_stack) + ft_strlen(buffer)
-			+ 1, sizeof(char));
+	new_stack = ft_cal_z(ft_strlen(old_stack) + ft_strlen(buffer)+ 1, 1);
 	if (!new_stack)
 	{
 		free(old_stack);
@@ -77,7 +76,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (start >= ft_strlen(s))
 	{
-		sub = (char *)ft_calloc_zero(1, sizeof(char));
+		sub = (char *)ft_cal_z(1, sizeof(char));
 		if (!sub)
 			return (NULL);
 		sub[0] = '\0';
@@ -85,7 +84,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	if (ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
-	sub = (char *)ft_calloc_zero(len + 1, sizeof(char));
+	sub = (char *)ft_cal_z(len + 1, sizeof(char));
 	if (!sub)
 		return (NULL);
 	i = 0;
@@ -98,11 +97,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-void	*ft_calloc_zero(size_t num, size_t size)
+void	*ft_cal_z(size_t num, size_t size)
 {
-	size_t i;
-	char *p;
-	void *arr;
+	size_t	i;
+	char	*p;
+	void	*arr;
 
 	arr = malloc(num * size);
 	if (!arr)

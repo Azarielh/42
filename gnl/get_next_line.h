@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:11:29 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/24 16:16:39 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:34:11 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
 char	*get_next_line(int fd);
 int		ft_eol_finder(const char *str);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_calloc_zero(size_t num, size_t size);
+void	*ft_cal_z(size_t num, size_t size);
 #endif
