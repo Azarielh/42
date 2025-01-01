@@ -46,7 +46,9 @@ size_t	ft_putnbr_fd(int nb, int fd)
 	len += ft_putchar_fd((unb % 10) + '0', fd);
 	return (len);
 }
-
+int choose_flag(int flag, int arg) {
+	
+}
 int	ft_printf(const char *str_to_print, ...)
 {
 	va_list	args;
