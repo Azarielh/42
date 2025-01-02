@@ -82,6 +82,7 @@ int	ft_printf(const char *str_to_print, ...)
 
 int	main(void)
 {
-	int len = ft_printf(" %d%s\n", 10, "bla");
+	int len = ft_printf(" %d\n%s\n", 10, "bla");
+	ft_printf("len = %d\n", len);
 	return (len);
 }
