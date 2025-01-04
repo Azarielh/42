@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "ft_printf.h"
 
 size_t	ft_strlen(char *str)
 {
@@ -46,43 +47,58 @@ size_t	ft_putnbr_fd(int nb, int fd)
 	len += ft_putchar_fd((unb % 10) + '0', fd);
 	return (len);
 }
+static int choose_flag(va_list args, t_flags flag)
+{
+	int (*print_arr[128])(va_list, t_flags);
 
+		print_arr['c'] = ft_putchar_fd;
+		print_arr['s'] = ft_putstr_fd;
+		// print_arr['p'] = print_pointer;
+		print_arr['d'] = ft_putnbr_fd;
+		// print_arr['i'] = print_int;
+		// print_arr['u'] = print_unsigned;
+		// print_arr['x'] = print_hex;
+		// print_arr['X'] = print_hex_upper;
+		// print_arr['%'] = ft_putchar_fd;
+		return (print_arr[(int) flag.type](args, flag));
+}
 int	ft_printf(const char *str_to_print, ...)
 {
 	va_list	args;
 	int		i;
 	size_t	printed_len;
 
-	i = 0;
+	t_flags flag;
+
+	i = -1;
 	printed_len = 0;
-	va_start(args, str_to_print); // Initialise la liste d'arguments
-	while (*str_to_print)         // Parcourir la chaîne
+	if (!str_to_print)
+		return (-1);
+	va_start(args, str_to_print);
+	while (str_to_print[++i])
 	{
-		if (*str_to_print == '%' && *(str_to_print + 1))
+		if (str_to_print[i] == '%')
 		{
-			str_to_print++;
-			if (*str_to_print == '%') // Handle the % char
-				printed_len += ft_putchar_fd('%', 1);
-			if (*str_to_print == 'd') // Print dynamics integers
-				printed_len += ft_putnbr_fd(va_arg(args, int), 1) - 1;
-			else if (*str_to_print == 's') // Print dynamics strings
-				printed_len += ft_putstr_fd(va_arg(args, char *), 1);
-			else if (*str_to_print == 'c') // Print dynamics solos chars
-				printed_len += ft_putchar_fd(va_arg(args, int), 1) - 1;
 			i++;
+			flag.type = str_to_print[i + 1];
+			printed_len += choose_flag(args, flag);
 		}
 		else
-			printed_len += ft_putchar_fd(*str_to_print, 1) - 1;
-				// Imprime les char non dynamique
-		str_to_print++;
+		{
+			ft_putchar_fd(str_to_print[i], 1);
+			printed_len++;			
+		}
 	}
-	va_end(args);              // Libère la liste d'arguments
-	return ((int)printed_len); // Retourne le nombre de spécificateurs comptés
+	return (va_end(args), printed_len);
 }
 
 int	main(void)
 {
-	int len = ft_printf(" %d\n%s\n", 10, "bla");
+	printf("ft_printf :\n");
+	int len = ft_printf("\n%s\n", "bla");
+	printf("Original printf :");
+	int len2 = printf("\n%s\n", "bla");
 	ft_printf("len = %d\n", len);
-	return (len);
+	printf("len2 = %d\n", len2);
+	return (0);
 }
