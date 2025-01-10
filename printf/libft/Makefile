@@ -49,7 +49,7 @@ DIR_CONVERTION = convertion/ft_atoi.c\
 
 DIR_MEMORY = memory/ft_bzero.c\
 		memory/ft_memchr.c\
-		memory/ft_mcmp.c\
+		memory/ft_memcmp.c\
 		memory/ft_memmove.c\
 		memory/ft_memset.c \
 		memory/ft_memcpy.c\
@@ -90,23 +90,23 @@ check_sources:
 	done
 
 # Compile the object files
-./%.o: */%.c libft.h Makefile
-	@echo "$(BLUE)Compilation de $<...$(RESET)"
-	@cc $(CFLAGS) -I . $< -c -o $@ || { echo "$(ERROR_MSG)"; exit 1; }
+./%.o: $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST)
+	@echo -n "$(BLUE)$(notdir $<) >>>>>> compiling $(RESET)"
+	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>>>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
 # Create lib
 ${NAME}: check_sources ${OBJS}
 	@ar rc ${NAME} ${OBJS} || { echo "$(ERROR_MSG)"; exit 1; }
-	@echo "All libft function has been compiled"
+	@echo "$(GREEN)======================= All libft function has been compiled =======================$(RESET)"
 
 # Clean it all up
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS) && echo "$(YELLOW)======================= All object files has been removed =======================$(RESET)"
 
 fclean: clean
-	rm -f  $(NAME)
+	@rm -f  $(NAME) && echo "$(YELLOW)======================= $(NAME) has been removed =======================$(RESET)"
 
 re: fclean all
-
+	@echo "$(GREEN)======================= $(NAME) has been recompiled =======================$(RESET)"
 
 .PHONY: all clean fclean re

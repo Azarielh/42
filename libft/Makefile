@@ -1,77 +1,112 @@
+# Color codes
+RESET      = \033[0m
+RED        = \033[31m
+GREEN      = \033[32m
+YELLOW     = \033[33m
+BLUE       = \033[34m
+MAGENTA    = \033[35m
+CYAN       = \033[36m
+WHITE      = \033[37m
+BOLD       = \033[1m
+
+
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
-SRCS = ft_bzero.c \
-		ft_isalnum.c\
-		ft_isalpha.c\
-		ft_isascii.c\
-		ft_isdigit.c\
-		ft_isprint.c\
-		ft_memchr.c\
-		ft_memcmp.c\
-		ft_memmove.c\
-		ft_memset.c \
-		ft_memcpy.c\
-		ft_calloc.c\
-		ft_putchar_fd.c\
-		ft_putendl_fd.c\
-		ft_putstr_fd.c\
-		ft_strchr.c\
-		ft_strdup.c\
-		ft_striteri.c\
-		ft_strlen.c\
-		ft_strncmp.c\
-		ft_strrchr.c\
-		ft_strlcpy.c\
-		ft_strlcat.c\
-		ft_strnstr.c\
-		ft_strjoin.c\
-		ft_strtrim.c\
-		ft_substr.c\
-		ft_tolower.c\
-		ft_toupper.c\
-		ft_atoi.c\
-		ft_split.c\
-		ft_itoa.c\
-		ft_strmapi.c\
-		ft_putnbr_fd.c
 
-SRCS_BONUS = ft_lstnew_bonus.c\
-			ft_lstadd_front_bonus.c\
-			ft_lstadd_back_bonus.c\
-			ft_lstclear_bonus.c\
-			ft_lstdelone_bonus.c\
-			ft_lstiter_bonus.c\
-			ft_lstlast_bonus.c\
-			ft_lstmap_bonus.c\
-			ft_lstsize_bonus.c
+# SRCS_DIR = lister les noms de dossiers srcs respectifs ici 
+# pourra servir pour une optimisation futur du makefile
 
-OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+# DIRECTORY
+
+DIR_BOOLEAN = boolean/ft_isalnum.c\
+		boolean/ft_isalpha.c\
+		boolean/ft_isascii.c\
+		boolean/ft_isdigit.c\
+		boolean/ft_isprint.c
+DIR_FINDER = finder/ft_strchr.c\
+		finder/ft_strrchr.c\
+		finder/ft_strnstr.c\
+		finder/ft_substr.c
+
+DIR_STR_MANIPULATION = str_manipulation/ft_strjoin.c\
+		str_manipulation/ft_strtrim.c\
+		str_manipulation/ft_split.c\
+		str_manipulation/ft_strmapi.c\
+		str_manipulation/ft_striteri.c\
+		str_manipulation/ft_strlcpy.c\
+		str_manipulation/ft_strlcat.c\
+		str_manipulation/ft_strdup.c\
+		str_manipulation/ft_putendl_fd.c
+
+
+DIR_STR_ANALYSIS = str_analysis/ft_strlen.c\
+		str_analysis/ft_strncmp.c\
+
+DIR_CONVERTION = convertion/ft_atoi.c\
+		convertion/ft_itoa.c\
+		convertion/ft_tolower.c\
+		convertion/ft_toupper.c\
+
+DIR_MEMORY = memory/ft_bzero.c\
+		memory/ft_memchr.c\
+		memory/ft_memcmp.c\
+		memory/ft_memmove.c\
+		memory/ft_memset.c \
+		memory/ft_memcpy.c\
+		memory/ft_calloc.c\
+
+DIR_OUTPUT = output/ft_putchar_fd.c\
+		output/ft_putstr_fd.c\
+		output/ft_putnbr_fd.c\
+
+DIR_LIST = list/ft_lstnew_bonus.c\
+		list/ft_lstadd_front_bonus.c\
+		list/ft_lstadd_back_bonus.c\
+		list/ft_lstclear_bonus.c\
+		list/ft_lstdelone_bonus.c\
+		list/ft_lstiter_bonus.c\
+		list/ft_lstlast_bonus.c\
+		list/ft_lstmap_bonus.c\
+		list/ft_lstsize_bonus.c
+
+# Define the source files
+SRCS = $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST)
+
+# Setting up an custom error message
+ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
+
+# This will create a list of object files from the list of source files
+OBJS = $(addprefix ./, $(notdir $(SRCS:.c=.o)))
 
 all: $(NAME)
 # Create a pattern rule to compile
- 
-%.o: %.c libft.h Makefile
-	@echo 
-	cc $(CFLAGS) -I . $< -c -o $@
+# Check source files
+check_sources:
+	@for file in $(SRCS); do \
+		if [ ! -f $$file ]; then \
+			echo "$(RED)[ERROR] Le fichier $$file est manquant ou introuvable. Vérifiez que tous les fichiers source sont présents. $(RESET)"; \
+			exit 1; \
+		fi; \
+	done
 
+# Compile the object files
+./%.o: $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST)
+	@echo -n "$(BLUE)$(notdir $<) >>>>>> compiling $(RESET)"
+	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>>>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
 # Create lib
-${NAME}: ${OBJS}
-	ar rc ${NAME} ${OBJS}
-
-bonus: 
-	@echo "\n"
-	$(MAKE) --no-print-directory all SRCS="$(SRCS) $(SRCS_BONUS)"  
+${NAME}: check_sources ${OBJS}
+	@ar rc ${NAME} ${OBJS} || { echo "$(ERROR_MSG)"; exit 1; }
+	@echo "$(GREEN)======================= All libft function has been compiled =======================$(RESET)"
 
 # Clean it all up
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
+	@rm -f $(OBJS) && echo "$(YELLOW)======================= All object files has been removed =======================$(RESET)"
 
 fclean: clean
-	rm -f  $(NAME)
+	@rm -f  $(NAME) && echo "$(YELLOW)======================= $(NAME) has been removed =======================$(RESET)"
 
-re: fclean
-	$(MAKE) all
+re: fclean all
+	@echo "$(GREEN)======================= $(NAME) has been recompiled =======================$(RESET)"
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:10:22 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/27 14:34:30 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:14:08 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	*extract_line(char **stack)
 
 char	*get_next_line(int fd)
 {
-	static char	*stack;
+	static char	*stack[1024];
 	char		*buffer;
 	char		*line;
 
@@ -73,10 +73,10 @@ char	*get_next_line(int fd)
 	buffer = (char *)ft_cal_z(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
-	stack = read_line(fd, stack, buffer);
+	stack[fd] = read_line(fd, stack[fd], buffer);
 	free(buffer);
-	if (!stack)
+	if (!stack[fd])
 		return (NULL);
-	line = extract_line(&stack);
+	line = extract_line(&stack[fd]);
 	return (line);
 }
