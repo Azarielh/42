@@ -90,7 +90,7 @@ check_sources:
 	done
 
 # Compile the object files
-./%.o: $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST)
+./%.o: $(SRCS)
 	@echo -n "$(BLUE)$(notdir $<) >>>>>> compiling $(RESET)"
 	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>>>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 

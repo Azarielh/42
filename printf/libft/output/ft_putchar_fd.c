@@ -6,13 +6,16 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 23:49:08 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/11 20:31:34 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:20:14 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+size_t	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	size_t	len;
+
+	len = write(fd, &c, 1);
+	return (len);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:28:15 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/01/05 22:19:30 by codespace        ###   ########.fr       */
+/*   Updated: 2025/01/10 17:25:01 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ size_t	ft_putnbr_fd(int nb, int fd)
 	unsigned int	unb;
 	size_t			len;
 
-	len = 0;
 	if (nb < 0)
 	{
 		ft_putchar_fd('-', fd);
