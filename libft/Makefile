@@ -13,8 +13,6 @@ BOLD       = \033[1m
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
-# SRCS_DIR = lister les noms de dossiers srcs respectifs ici 
-# pourra servir pour une optimisation futur du makefile
 
 # DIRECTORY
 
@@ -91,8 +89,8 @@ check_sources:
 
 # Compile the object files
 ./%.o: $(SRCS)
-	@echo -n "$(BLUE)$(notdir $<) >>>>>> compiling $(RESET)"
-	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>>>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
+	@echo -n "$(BLUE)$(notdir $@) $(RESET)"
+	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
 # Create lib
 ${NAME}: check_sources ${OBJS}

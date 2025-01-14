@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 23:58:56 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/01/10 17:25:24 by jlacaze-         ###   ########.fr       */
+/*   Created: 2025/01/13 18:45:51 by jlacaze-          #+#    #+#             */
+/*   Updated: 2025/01/14 01:02:10 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
-size_t	ft_putstr_fd(char *str, int fd)
+size_t	ft_putnbr_fd(int nb, int fd)
 {
-	size_t	len;
+	unsigned int	unb;
+	size_t			len;
 
-	len = write(fd, str, ft_strlen(str));
+	len = 0;
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		unb = -nb;
+		len++;
+	}
+	else
+		unb = nb;
+	if (unb >= 10)
+		len += ft_putnbr_fd(unb / 10, fd);
+	len += ft_putchar_fd((unb % 10) + '0', fd);
 	return (len);
 }

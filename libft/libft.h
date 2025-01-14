@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 20:43:07 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/01/10 17:20:50 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:49:13 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char *s, int fd);
+size_t				ft_putchar_fd(char c, int fd);
+size_t				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
+size_t				ft_putnbr_fd(int n, int fd);
 void				ft_striteri(char *str, void (*f)(unsigned int, char *));
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *s, int c, size_t n);

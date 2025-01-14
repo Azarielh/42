@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 22:48:06 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/11 20:38:13 by jlacaze-         ###   ########.fr       */
+/*   Created: 2025/01/13 18:36:56 by jlacaze-          #+#    #+#             */
+/*   Updated: 2025/01/14 01:01:33 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_tolower(int c)
+size_t	ft_strlen(char *str)
 {
-	if (c > 255 || c == EOF)
-		return (-1);
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
+	size_t	len;
+
+	len = 0;
+	while (*str++)
+		len++;
+	return (len);
+}
+
+size_t	ft_putstr_fd(char *str, int fd)
+{
+	size_t	len;
+
+	if (!str)
+		return (write(1, "(null)", 6));
+	len = write(fd, str, ft_strlen(str));
+	return (len);
 }

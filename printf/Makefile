@@ -1,15 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/02 14:52:45 by codespace         #+#    #+#              #
-#    Updated: 2025/01/13 12:56:08 by jlacaze-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
+# Color codes
 RESET      = \033[0m
 RED        = \033[31m
 GREEN      = \033[32m
@@ -20,28 +9,48 @@ CYAN       = \033[36m
 WHITE      = \033[37m
 BOLD       = \033[1m
 
+# General info
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-SRCS = ft_printf.c
+
+SRCS = ft_printf.c\
+		ft_putstr.c\
+		ft_putchar.c\
+		ft_putnbr.c\
+		ft_puthex.c\
+		ft_putnbr_deci.c
+
+
+OBJS = $(SRCS:.c=.o)
+
+# Setting up an custom error message
+ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
 
 all: $(NAME)
 
-%.o: %.c printf.h
-	@cc $(CFLAGS) -I . $< -c -o $@
+# Check source files
+check_sources:
+	@for file in $(SRCS); do \
+		if [ ! -f $$file ]; then \
+			echo "$(RED)[ERROR] Le fichier $$file est manquant ou introuvable. Vérifiez que tous les fichiers source sont présents. $(RESET)"; \
+			exit 1; \
+		fi; \
+	done
+	@echo "$(MAGENTA)======================= START COMPILATION =======================$(RESET)"
 
-$(NAME): $(OBJS)
-	@echo "$(BLUE)LIBFT >>>>>>>$(RESET)"
-	@$(MAKE) --no-print-directory -C ./libft
-	@cp libft/libft.a $(NAME) && echo "$(BLUE)libft.a has been copied into prinf directory as $(NAME)$(RESET)"
-	@echo "$(GREEN)$(BOLD)libft$(RESET)$(GREEN) is now implemented in $(NAME)$(GREEN)"
-	@ar rc $(NAME) $(OBJS)
+%.o: %.c
+	@echo -n "$(BLUE)$@ $(RESET)"
+	@cc $(CFLAGS) -I . $< -c -o $@ && echo "  $(GREEN)>>>>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
+
+$(NAME): check_sources ${OBJS} 
+	@ar rc $(NAME) $(OBJS)  || { echo "$(ERROR_MSG)"; exit 1; }
+	@echo "$(GREEN)======================= All recquired function for printf has been compiled =======================$(RESET)"
 
 clean:
-	@rm -f $(OBJS)
-	@$(MAKE) --no-print-directory -C libft clean
+	@rm -f $(OBJS) && echo "$(YELLOW)======================= All object files has been removed =======================$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)	
+	@rm -f  $(NAME) && echo "$(YELLOW)======================= $(NAME) has been removed =======================$(RESET)"
 re: fclean all
 
 .PHONY: all clean fclean re
