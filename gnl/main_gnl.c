@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main_gnl.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 15:39:44 by gueberso          #+#    #+#             */
-/*   Updated: 2025/01/01 15:29:50 by jlacaze-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line_bonus.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -24,17 +12,7 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 		return ("You forgot to input arguments");
-	// {
-	// 	char	*line_std;
 
-	// 	printf("CTRL+D pour terminer (CTRL+C kill the program):\n");
-	// 	while ((line_std = get_next_line(0)) != NULL)
-	// 	{
-	// 		printf("%s", line_std);
-	// 		free(line_std);
-	// 	}
-	// 	return (0);
-	// }
 	files_left = 0;
 	for (i = 1; i < ac; i++)
 	{
