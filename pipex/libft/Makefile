@@ -1,20 +1,9 @@
-# Color codes
-RESET      = \033[0m
-RED        = \033[31m
-GREEN      = \033[32m
-YELLOW     = \033[33m
-BLUE       = \033[34m
-MAGENTA    = \033[35m
-CYAN       = \033[36m
-WHITE      = \033[37m
-BOLD       = \033[1m
-
+.PHONY: all clean fclean re
 
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 
-
-# DIRECTORY
+# _____________________ SRC DIRECTORIES __________________________
 
 DIR_BOOLEAN = boolean/ft_isalnum.c\
 		boolean/ft_isalpha.c\
@@ -77,7 +66,6 @@ ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
 OBJS = $(addprefix ./, $(notdir $(SRCS:.c=.o)))
 
 all: $(NAME)
-# Create a pattern rule to compile
 # Check source files
 check_sources:
 	@for file in $(SRCS); do \
@@ -92,7 +80,7 @@ check_sources:
 	@echo -n "$(BLUE)$(notdir $@) $(RESET)"
 	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
-# Create lib
+# Create lib with ar rc
 ${NAME}: check_sources ${OBJS}
 	@ar rc ${NAME} ${OBJS} || { echo "$(ERROR_MSG)"; exit 1; }
 	@echo "$(GREEN)======================= All libft function has been compiled =======================$(RESET)"
@@ -107,4 +95,14 @@ fclean: clean
 re: fclean all
 	@echo "$(GREEN)======================= $(NAME) has been recompiled =======================$(RESET)"
 
-.PHONY: all clean fclean re
+# ________________ Color codes ________________________
+
+RESET      = \033[0m
+RED        = \033[31m
+GREEN      = \033[32m
+YELLOW     = \033[33m
+BLUE       = \033[34m
+MAGENTA    = \033[35m
+CYAN       = \033[36m
+WHITE      = \033[37m
+BOLD       = \033[1m
