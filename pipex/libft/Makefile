@@ -43,8 +43,11 @@ DIR_MEMORY = memory/ft_bzero.c\
 		memory/ft_calloc.c\
 
 DIR_OUTPUT = output/ft_putchar_fd.c\
+		output/ft_puthex.c\
+		output/ft_putnbr_deci.c\
 		output/ft_putstr_fd.c\
 		output/ft_putnbr_fd.c\
+		output/ft_printf.c\
 
 DIR_LIST = list/ft_lstnew_bonus.c\
 		list/ft_lstadd_front_bonus.c\
@@ -63,7 +66,8 @@ SRCS = $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) 
 ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
 
 # This will create a list of object files from the list of source files
-OBJS = $(addprefix ./, $(notdir $(SRCS:.c=.o)))
+OBJS_DIR = .objs/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
 all: $(NAME)
 # Check source files
@@ -76,7 +80,8 @@ check_sources:
 	done
 
 # Compile the object files
-./%.o: $(SRCS)
+$(OBJS_DIR)%.o: %.c
+	@mkdir -p $(dir $@)
 	@echo -n "$(BLUE)$(notdir $@) $(RESET)"
 	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
@@ -87,7 +92,7 @@ ${NAME}: check_sources ${OBJS}
 
 # Clean it all up
 clean:
-	@rm -f $(OBJS) && echo "$(YELLOW)======================= All object files has been removed =======================$(RESET)"
+	@rm -rf $(OBJS_DIR) && echo "$(YELLOW)======================= All object files has been removed =======================$(RESET)"
 
 fclean: clean
 	@rm -f  $(NAME) && echo "$(YELLOW)======================= $(NAME) has been removed =======================$(RESET)"

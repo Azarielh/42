@@ -6,12 +6,13 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 00:00:00 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/01/14 01:02:17 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:07:59 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
+// Need to be transform into putnbr_base
 long long	ft_putnbr_deci(unsigned long nb)
 {
 	long long	unb;

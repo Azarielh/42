@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:07:56 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/01 22:53:45 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:03:18 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_are_u_1_of_u(char u, char *str)
 {

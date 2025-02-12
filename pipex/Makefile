@@ -8,9 +8,10 @@ NAME = pipex
 
 # LIBFT
 LIBFT_DIR = libft/
+LIBFT_A = libft/libft.a
 
 # PRINTF
-PRINTF_DIR =printf/
+#PRINTF_DIR =printf/
 
 SRC = pipex.c 
 
@@ -19,32 +20,33 @@ OBJS = $(SRC:.c=.o)
 # Setting up an custom error message
 ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
 
-all: $(LIBFT) $(PRINTF) $(OBJ) $(NAME)
-
-$(NAME): LIBFT PRINTF $(OBJS)
-	@cc $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -o $(NAME)
-	@echo "$(GREEN)======================= All pipex required library has been compiled =======================$(RESET)"
+all: $(LIBFT) $(OBJS) $(NAME)
 
 %.o: %.c
 	@echo -n "$(BLUE) $@ $(RESET)"
 	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
-LIBFT:
+$(NAME): $(OBJS) $(LIBFT_A)
+	@cc $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft
+	@echo "$(GREEN)======================= All pipex required library has been compiled =======================$(RESET)"
+
+$(LIBFT_A):
 	@echo "$(YELLOW)1/  Building libft..............................................................................$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory || @echo "Issue while attempting compiling libft"
+	@cp $(LIBFT_DIR)libft.a ./ && cp $(LIBFT_DIR)libft.h ./
 
-PRINTF:
-	@echo "$(YELLOW)2/  Building printf..............................................................................$(RESET)"
-	@$(MAKE) -C $(PRINTF_DIR) --no-print-directory || @echo "Issue while attempting compiling printf"
+# PRINTF:
+#	@echo "$(YELLOW)2/  Building printf..............................................................................$(RESET)"
+#	@$(MAKE) -C $(PRINTF_DIR) --no-print-directory || @echo "Issue while attempting compiling printf"
 
 clean:
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory clean
-	@cd $(PRINTF_DIR) && $(MAKE) --no-print-directory clean
+#	@cd $(PRINTF_DIR) && $(MAKE) --no-print-directory clean
 	@rm -f $(OBJS)
 
 fclean: clean
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory fclean
-	@cd $(PRINTF_DIR) && $(MAKE) --no-print-directory fclean
+#	@cd $(PRINTF_DIR) && $(MAKE) --no-print-directory fclean
 	@rm -f $(NAME)
 
 re: fclean all

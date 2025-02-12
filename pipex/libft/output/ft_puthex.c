@@ -6,11 +6,11 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:22:25 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/01/14 00:55:15 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:07:44 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 unsigned long	ft_puthex(unsigned long nb, char caps)
 {

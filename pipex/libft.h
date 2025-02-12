@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 20:43:07 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/13 00:26:22 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:05:02 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int					ft_strncmp(const char *str1, const char *str2, size_t n);
 int					ft_strlen(const char *str);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
-int					ft_printf(const char *str, ...);
 
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
