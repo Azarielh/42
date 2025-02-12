@@ -19,23 +19,23 @@ OBJS = $(SRC:.c=.o)
 # Setting up an custom error message
 ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
 
-all: $(LIBFT) $(PRINTF) $(NAME)
+all: $(LIBFT) $(PRINTF) $(OBJ) $(NAME)
 
 $(NAME): LIBFT PRINTF $(OBJS)
 	@cc $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf -o $(NAME)
 	@echo "$(GREEN)======================= All pipex required library has been compiled =======================$(RESET)"
 
-./%.o: $(SRC)
+%.o: %.c
 	@echo -n "$(BLUE) $@ $(RESET)"
-	@cc $(CFLAGS) -I . $< -c -o $(NAME) && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
+	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 
 LIBFT:
 	@echo "$(YELLOW)1/  Building libft..............................................................................$(RESET)"
-	@make -C $(LIBFT_DIR) --no-print-directory || @echo "Issue while attempting compiling libft"
+	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory || @echo "Issue while attempting compiling libft"
 
 PRINTF:
 	@echo "$(YELLOW)2/  Building printf..............................................................................$(RESET)"
-	@make -C $(PRINTF_DIR) --no-print-directory || @echo "Issue while attempting compiling printf"
+	@$(MAKE) -C $(PRINTF_DIR) --no-print-directory || @echo "Issue while attempting compiling printf"
 
 clean:
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory clean
