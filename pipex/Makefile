@@ -35,18 +35,12 @@ $(LIBFT_A):
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory || @echo "Issue while attempting compiling libft"
 	@cp $(LIBFT_DIR)libft.a ./ && cp $(LIBFT_DIR)libft.h ./
 
-# PRINTF:
-#	@echo "$(YELLOW)2/  Building printf..............................................................................$(RESET)"
-#	@$(MAKE) -C $(PRINTF_DIR) --no-print-directory || @echo "Issue while attempting compiling printf"
-
 clean:
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory clean
-#	@cd $(PRINTF_DIR) && $(MAKE) --no-print-directory clean
 	@rm -f $(OBJS)
 
 fclean: clean
 	@cd $(LIBFT_DIR) && $(MAKE) --no-print-directory fclean
-#	@cd $(PRINTF_DIR) && $(MAKE) --no-print-directory fclean
 	@rm -f $(NAME)
 
 re: fclean all
