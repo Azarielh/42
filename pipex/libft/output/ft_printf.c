@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:07:56 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/12 22:03:18 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:25:27 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 #include <unistd.h>
 #include "libft.h"
 
-int	ft_are_u_1_of_u(char u, char *str)
-{
-	while (*str)
-	{
-		if (*str == u)
-			return (1);
-		str++;
-	}
-	return (0);
-}
 
 int	select_flag_n_print(char flag, va_list args)
 {

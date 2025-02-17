@@ -9,7 +9,8 @@ DIR_BOOLEAN = boolean/ft_isalnum.c\
 		boolean/ft_isalpha.c\
 		boolean/ft_isascii.c\
 		boolean/ft_isdigit.c\
-		boolean/ft_isprint.c
+		boolean/ft_isprint.c\
+		boolean/ft_are_u_1_of_u.c
 DIR_FINDER = finder/ft_strchr.c\
 		finder/ft_strrchr.c\
 		finder/ft_strnstr.c\
