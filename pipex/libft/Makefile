@@ -50,15 +50,15 @@ DIR_OUTPUT = output/ft_putchar_fd.c\
 		output/ft_putnbr_fd.c\
 		output/ft_printf.c\
 
-DIR_LIST = list/ft_lstnew_bonus.c\
-		list/ft_lstadd_front_bonus.c\
-		list/ft_lstadd_back_bonus.c\
-		list/ft_lstclear_bonus.c\
-		list/ft_lstdelone_bonus.c\
-		list/ft_lstiter_bonus.c\
-		list/ft_lstlast_bonus.c\
-		list/ft_lstmap_bonus.c\
-		list/ft_lstsize_bonus.c
+DIR_LIST = list/ft_lstnew.c\
+		list/ft_lstadd_front.c\
+		list/ft_lstadd_back.c\
+		list/ft_lstclear.c\
+		list/ft_lstdelone.c\
+		list/ft_lstiter.c\
+		list/ft_lstlast.c\
+		list/ft_lstmap.c\
+		list/ft_lstsize.c
 
 # Define the source files
 SRCS = $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST)

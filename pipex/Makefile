@@ -1,3 +1,7 @@
+# MANQUE  :
+#       SUPPRIMER LIBFT.A DU DOSSIER COURANT
+#           "     LIBFT.H DU DOSSIER COURANT
+
 .PHONY: all clean fclean re
 
 # General 
