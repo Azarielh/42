@@ -6,11 +6,12 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:10:28 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/27 15:14:28 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:24:06 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+#include "libft.h"
 
 int	ft_eol_finder(const char *s) // stcnl
 {
@@ -28,25 +29,14 @@ int	ft_eol_finder(const char *s) // stcnl
 	return (-1);
 }
 
-size_t	ft_strlen(const char *str) // ft_l
-{
-	size_t	i;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin(char *old_stack, char *buffer)
+char	*ft_gnl_strjoin(char *old_stack, char *buffer)
 {
 	char	*new_stack;
 	size_t	i;
 	size_t	j;
 
-	new_stack = ft_cal_z(ft_strlen(old_stack) + ft_strlen(buffer)+ 1, 1);
+	new_stack = ft_calloc(ft_strlen(old_stack) + ft_strlen(buffer)+ 1, 1);
 	if (!new_stack)
 	{
 		free(old_stack);
@@ -74,17 +64,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*sub;
 
-	if (start >= ft_strlen(s))
+	if (start >= (unsigned int)ft_strlen(s))
 	{
-		sub = (char *)ft_cal_z(1, sizeof(char));
+		sub = (char *)ft_calloc(1, sizeof(char));
 		if (!sub)
 			return (NULL);
 		sub[0] = '\0';
 		return (sub);
 	}
-	if (ft_strlen(s + start) < len)
+	if ((unsigned int)ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
-	sub = (char *)ft_cal_z(len + 1, sizeof(char));
+	sub = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!sub)
 		return (NULL);
 	i = 0;
@@ -97,21 +87,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-void	*ft_cal_z(size_t num, size_t size)
-{
-	size_t	i;
-	char	*p;
-	void	*arr;
-
-	arr = malloc(num * size);
-	if (!arr)
-		return (NULL);
-	i = 0;
-	p = (char *)arr;
-	while (i < num * size)
-	{
-		p[i] = 0;
-		i++;
-	}
-	return (arr);
-}

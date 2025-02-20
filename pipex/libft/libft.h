@@ -20,7 +20,7 @@
 /**
  * @struct s_list
  * @brief A structure representing a node in a linked list.
- * 
+ *
  * @var s_list::content
  * The content of the node.
  * @var s_list::next
@@ -35,9 +35,9 @@ typedef struct s_list
 /**                                  FT_ISALNUM
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Checks if the given character is alphanumeric.
- * 
+ *
  * @param c The character to check.
  * @return Non-zero if the character is alphanumeric, zero otherwise.
  */
@@ -46,9 +46,9 @@ int ft_isalnum(int c);
 /**                                  FT_ISALPHA
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Checks if the given character is alphabetic.
- * 
+ *
  * @param c The character to check.
  * @return Non-zero if the character is alphabetic, zero otherwise.
  */
@@ -57,9 +57,9 @@ int ft_isalpha(int c);
 /**                                  FT_ISASCII
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Checks if the given character is an ASCII character.
- * 
+ *
  * @param c The character to check.
  * @return Non-zero if the character is an ASCII character, zero otherwise.
  */
@@ -68,9 +68,9 @@ int ft_isascii(int c);
 /**                                  FT_ISDIGIT
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Checks if the given character is a digit.
- * 
+ *
  * @param c The character to check.
  * @return Non-zero if the character is a digit, zero otherwise.
  */
@@ -79,9 +79,9 @@ int ft_isdigit(int c);
 /**                                  FT_ISPRINT
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Checks if the given character is printable.
- * 
+ *
  * @param c The character to check.
  * @return Non-zero if the character is printable, zero otherwise.
  */
@@ -90,9 +90,9 @@ int ft_isprint(int c);
 /**                                  FT_ARE_U__OF_U
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Checks if the given character is one of the characters in the string.
- * 
+ *
  * @param c The character to check.
  * @param str The string to check against.
  * @return Non-zero if the character is in the string, zero otherwise.
@@ -102,9 +102,9 @@ int ft_are_u_1_of_u(char c, char *str);
 /**                                  FT_TOLOWER
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Converts the given character to lowercase.
- * 
+ *
  * @param c The character to convert.
  * @return The lowercase equivalent of the character, or the character itself if it is not alphabetic.
  */
@@ -113,9 +113,9 @@ int ft_tolower(int c);
 /**                                  FT_TOUPPER
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Converts the given character to uppercase.
- * 
+ *
  * @param c The character to convert.
  * @return The uppercase equivalent of the character, or the character itself if it is not alphabetic.
  */
@@ -124,9 +124,9 @@ int ft_toupper(int c);
 /**                                  FT_STRNCMP
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Compares up to n characters of two strings.
- * 
+ *
  * @param str1 The first string to compare.
  * @param str2 The second string to compare.
  * @param n The maximum number of characters to compare.
@@ -137,9 +137,9 @@ int ft_strncmp(const char *str1, const char *str2, size_t n);
 /**                                  FT_STRLEN
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Calculates the length of a string.
- * 
+ *
  * @param str The string to calculate the length of.
  * @return The length of the string.
  */
@@ -148,9 +148,9 @@ int ft_strlen(const char *str);
 /**                                  FT_MEMCMP
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Compares two blocks of memory.
- * 
+ *
  * @param s1 The first block of memory to compare.
  * @param s2 The second block of memory to compare.
  * @param n The number of bytes to compare.
@@ -161,9 +161,9 @@ int ft_memcmp(const void *s1, const void *s2, size_t n);
 /**                                  FT_ATOI
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Converts a string to an integer.
- * 
+ *
  * @param str The string to convert.
  * @return The integer value of the string.
  */
@@ -172,9 +172,9 @@ int ft_atoi(const char *str);
 /**                                  FT_PRINTF
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief A formatted output conversion.
- * 
+ *
  * @param str The format string.
  * @param ... The values to format.
  * @return The number of characters printed.
@@ -184,9 +184,9 @@ int ft_printf(const char *str, ...);
 /**                                  FT_STRLCPY
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Copies up to size - 1 characters from the string src to dest, NUL-terminating the result.
- * 
+ *
  * @param dest The destination buffer.
  * @param src The source string.
  * @param size The size of the destination buffer.
@@ -197,9 +197,9 @@ size_t ft_strlcpy(char *dest, const char *src, size_t size);
 /**                                  FT_STRLCAT
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Appends the string src to the end of dest, up to size - strlen(dest) - 1 characters.
- * 
+ *
  * @param dest The destination buffer.
  * @param src The source string.
  * @param size The size of the destination buffer.
@@ -210,9 +210,9 @@ size_t ft_strlcat(char *dest, const char *src, size_t size);
 /**                                  FT_PUTCHAR_FD
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Writes the character c to the given file descriptor.
- * 
+ *
  * @param c The character to write.
  * @param fd The file descriptor to write to.
  * @return The number of characters written.
@@ -222,9 +222,9 @@ size_t ft_putchar_fd(char c, int fd);
 /**                                  FT_PUTSTR_FD
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Writes the string str to the given file descriptor.
- * 
+ *
  * @param str The string to write.
  * @param fd The file descriptor to write to.
  * @return The number of characters written.
@@ -234,9 +234,9 @@ size_t ft_putstr_fd(char *str, int fd);
 /**                                  FT_PUTNBR_FD
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Writes the integer n to the given file descriptor.
- * 
+ *
  * @param n The integer to write.
  * @param fd The file descriptor to write to.
  * @return The number of characters written.
@@ -246,9 +246,9 @@ size_t ft_putnbr_fd(int n, int fd);
 /**                                  FT_PUTNBR_DECI
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Writes the decimal representation of the unsigned long nb.
- * 
+ *
  * @param nb The number to write.
  * @return The number of characters written.
  */
@@ -257,9 +257,9 @@ long long ft_putnbr_deci(unsigned long nb);
 /**                                  FT_PUTHEX
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Writes the hexadecimal representation of the unsigned long nb.
- * 
+ *
  * @param nb The number to write.
  * @param caps If non-zero, use uppercase letters for the hexadecimal digits.
  * @return The number of characters written.
@@ -269,9 +269,9 @@ unsigned long ft_puthex(unsigned long nb, char caps);
 /**                                  FT_STRRCHR
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Locates the last occurrence of c in the string str.
- * 
+ *
  * @param str The string to search.
  * @param c The character to locate.
  * @return A pointer to the last occurrence of c in str, or NULL if c is not found.
@@ -281,9 +281,9 @@ char *ft_strrchr(const char *str, int c);
 /**                                  FT_STRDUP
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Duplicates the string str.
- * 
+ *
  * @param str The string to duplicate.
  * @return A pointer to the duplicated string, or NULL if memory allocation fails.
  */
@@ -292,9 +292,9 @@ char *ft_strdup(const char *str);
 /**                                  FT_STRCHR
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Locates the first occurrence of c in the string str.
- * 
+ *
  * @param str The string to search.
  * @param c The character to locate.
  * @return A pointer to the first occurrence of c in str, or NULL if c is not found.
@@ -304,9 +304,9 @@ char *ft_strchr(const char *str, int c);
 /**                                  FT_SUBSTR
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Allocates and returns a substring from the string s.
- * 
+ *
  * @param s The string to create the substring from.
  * @param start The start index of the substring.
  * @param len The length of the substring.
@@ -317,9 +317,9 @@ char *ft_substr(char const *s, unsigned int start, size_t len);
 /**                                  FT_STRJOIN
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Allocates and returns a new string, which is the result of the concatenation of s1 and s2.
- * 
+ *
  * @param s1 The first string.
  * @param s2 The second string.
  * @return A pointer to the concatenated string, or NULL if memory allocation fails.
@@ -329,9 +329,9 @@ char *ft_strjoin(char const *s1, char const *s2);
 /**                                  FT_STRTRIM
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Allocates and returns a copy of s1 with the characters specified in set removed from the beginning and the end of the string.
- * 
+ *
  * @param s1 The string to trim.
  * @param set The set of characters to remove.
  * @return A pointer to the trimmed string, or NULL if memory allocation fails.
@@ -341,9 +341,9 @@ char *ft_strtrim(char const *s1, char const *set);
 /**                                  FT_STRNSTR
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Locates the first occurrence of the null-terminated string little in the string big, where not more than len characters are searched.
- * 
+ *
  * @param big The string to search.
  * @param little The substring to locate.
  * @param len The maximum number of characters to search.
@@ -354,9 +354,9 @@ char *ft_strnstr(const char *big, const char *little, size_t len);
 /**                                  FT_ITOA
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Converts an integer to a null-terminated string.
- * 
+ *
  * @param n The integer to convert.
  * @return A pointer to the string representation of the integer, or NULL if memory allocation fails.
  */
@@ -367,7 +367,7 @@ char *ft_itoa(int n);
  * _________________________________________________________________________________________________
 
  * @brief Splits the string str into an array of strings using the character c as a delimiter.
- * 
+ *
  * @param str The string to split.
  * @param c The delimiter character.
  * @return A pointer to the array of strings, or NULL if memory allocation fails.
@@ -377,9 +377,9 @@ char **ft_split(char const *str, char c);
 /**                                  FT_STRMAPI
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Applies the function f to each character of the string s to create a new string resulting from successive applications of f.
- * 
+ *
  * @param s The string to map.
  * @param f The function to apply to each character.
  * @return A pointer to the new string, or NULL if memory allocation fails.
@@ -389,9 +389,9 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 /**                                  FT_PUTENDL_FD
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Writes the string s to the given file descriptor, followed by a newline.
- * 
+ *
  * @param s The string to write.
  * @param fd The file descriptor to write to.
  */
@@ -400,9 +400,9 @@ void ft_putendl_fd(char *s, int fd);
 /**                                  FT_STRITERI
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Applies the function f to each character of the string str, passing its index as the first argument.
- * 
+ *
  * @param str The string to iterate over.
  * @param f The function to apply to each character.
  */
@@ -411,9 +411,9 @@ void ft_striteri(char *str, void (*f)(unsigned int, char *));
 /**                                  FT_BZERO
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Sets the first n bytes of the block of memory pointed by s to zero.
- * 
+ *
  * @param s The block of memory to set.
  * @param n The number of bytes to set to zero.
  */
@@ -422,9 +422,9 @@ void ft_bzero(void *s, size_t n);
 /**                                  FT_MEMSET
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Fills the first n bytes of the memory area pointed to by s with the constant byte c.
- * 
+ *
  * @param s The memory area to fill.
  * @param c The byte to fill with.
  * @param n The number of bytes to fill.
@@ -435,9 +435,9 @@ void *ft_memset(void *s, int c, size_t n);
 /**                                  FT_MEMMOVE
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Copies n bytes from memory area src to memory area dest. The memory areas may overlap.
- * 
+ *
  * @param dest The destination memory area.
  * @param src The source memory area.
  * @param n The number of bytes to copy.
@@ -448,9 +448,9 @@ void *ft_memmove(void *dest, const void *src, size_t n);
 /**                                  FT_MEMCHR
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Scans the initial n bytes of the memory area pointed to by str for the first instance of c.
- * 
+ *
  * @param str The memory area to scan.
  * @param c The byte to search for.
  * @param n The number of bytes to scan.
@@ -461,9 +461,9 @@ void *ft_memchr(const void *str, int c, size_t n);
 /**                                  FT_MEMCPY
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Copies n bytes from memory area src to memory area dest. The memory areas must not overlap.
- * 
+ *
  * @param dest The destination memory area.
  * @param src The source memory area.
  * @param n The number of bytes to copy.
@@ -474,9 +474,9 @@ void *ft_memcpy(void *dest, const void *src, size_t n);
 /**                                  FT_CALLOC
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero.
- * 
+ *
  * @param nmemb The number of elements.
  * @param size The size of each element.
  * @return A pointer to the allocated memory, or NULL if memory allocation fails.
@@ -486,9 +486,9 @@ void *ft_calloc(size_t nmemb, size_t size);
 /**                                  FT_LSTADD_FRONT
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Adds the element new_elem at the beginning of the list lst.
- * 
+ *
  * @param lst The address of a pointer to the first link of a list.
  * @param new_elem The address of a pointer to the element to be added to the list.
  */
@@ -496,7 +496,7 @@ void ft_lstadd_front(t_list **lst, t_list *new_elem);
 
 /**
  * @brief Adds the element new_elem at the end of the list lst.
- * 
+ *
  * @param lst The address of a pointer to the first link of a list.
  * @param new_elem The address of a pointer to the element to be added to the list.
  */
@@ -505,9 +505,9 @@ void ft_lstadd_back(t_list **lst, t_list *new_elem);
 /**                                  FT_LSTDELONE
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Takes as a parameter an element and frees the memory of the element’s content using the function del given as a parameter, then frees the element.
- * 
+ *
  * @param lst The element to free.
  * @param del The function to delete the content of the element.
  */
@@ -516,9 +516,9 @@ void ft_lstdelone(t_list *lst, void (*del)(void *));
 /**                                  FT_LSTCLEAR
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Deletes and frees the given element and every successor of that element, using the function del and free.
- * 
+ *
  * @param lst The address of a pointer to an element.
  * @param del The function to delete the content of the element.
  */
@@ -527,9 +527,9 @@ void ft_lstclear(t_list **lst, void (*del)(void *));
 /**                                  FT_LSTITER
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Iterates the list lst and applies the function f to the content of each element.
- * 
+ *
  * @param lst The address of a pointer to an element.
  * @param f The function to apply to each element.
  */
@@ -538,9 +538,9 @@ void ft_lstiter(t_list *lst, void (*f)(void *));
 /**                                  FT_LSTNEW
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Allocates and returns a new element. The variable content is initialized with the value of the parameter content. The variable next is initialized to NULL.
- * 
+ *
  * @param content The content to create the new element with.
  * @return The new element.
  */
@@ -549,9 +549,9 @@ t_list *ft_lstnew(void *content);
 /**                                  FT_LSTLAST
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Returns the last element of the list.
- * 
+ *
  * @param lst The beginning of the list.
  * @return The last element of the list.
  */
@@ -560,9 +560,9 @@ t_list *ft_lstlast(t_list *lst);
 /**                                  FT_LSTMAP
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Iterates the list lst and applies the function f to the content of each element. Creates a new list resulting from the successive applications of the function f. The del function is used to delete the content of an element if needed.
- * 
+ *
  * @param lst The address of a pointer to an element.
  * @param f The function to apply to each element.
  * @param del The function to delete the content of an element if needed.
@@ -573,9 +573,9 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 /**                                  FT_LSTSIZE
  * _________________________________________________________________________________________________
  * _________________________________________________________________________________________________
- * 
+ *
  * @brief Counts the number of elements in a list.
- * 
+ *
  * @param lst The beginning of the list.
  * @return The number of elements in the list.
  */

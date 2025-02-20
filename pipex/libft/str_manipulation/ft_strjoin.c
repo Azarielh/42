@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 20:59:51 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/11/25 15:51:50 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:19:15 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	{
 		new_str[i++] = s2[j++];
 	}
-	new_str[i] = '\0';
+	new_str[i + j] = '\0';
 	return (new_str);
 }

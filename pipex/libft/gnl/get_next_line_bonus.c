@@ -6,18 +6,19 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:10:22 by jlacaze-          #+#    #+#             */
-/*   Updated: 2024/12/27 15:14:08 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:20:53 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+#include "libft.h"
 
 static char	*read_line(int fd, char *stack, char *buffer)
 {
 	int	read_bytes;
 
 	if (!stack)
-		stack = ft_cal_z(1, sizeof(char));
+		stack = ft_calloc(1, sizeof(char));
 	read_bytes = 1;
 	while (read_bytes > 0)
 	{
@@ -28,7 +29,7 @@ static char	*read_line(int fd, char *stack, char *buffer)
 			return (NULL);
 		}
 		buffer[read_bytes] = '\0';
-		stack = ft_strjoin(stack, buffer);
+		stack = ft_gnl_strjoin(stack, buffer);
 		if (ft_eol_finder(stack) != -1)
 			break ;
 	}
@@ -70,7 +71,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)ft_cal_z(BUFFER_SIZE + 1, sizeof(char));
+	buffer = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	stack[fd] = read_line(fd, stack[fd], buffer);

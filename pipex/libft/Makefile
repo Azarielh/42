@@ -60,8 +60,10 @@ DIR_LIST = list/ft_lstnew.c\
 		list/ft_lstmap.c\
 		list/ft_lstsize.c
 
+DIR_GNL = gnl/get_next_line_bonus.c\
+		gnl/get_next_line_utils_bonus.c
 # Define the source files
-SRCS = $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST)
+SRCS = $(DIR_BOOLEAN) $(DIR_FINDER) $(DIR_STR_MANIPULATION) $(DIR_STR_ANALYSIS) $(DIR_CONVERTION) $(DIR_MEMORY) $(DIR_OUTPUT) $(DIR_LIST) $(DIR_GNL)
 
 # Setting up an custom error message
 ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
