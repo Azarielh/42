@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:10:28 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/20 23:24:06 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/21 01:01:17 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_eol_finder(const char *s) // stcnl
 	}
 	return (-1);
 }
-
 
 char	*ft_gnl_strjoin(char *old_stack, char *buffer)
 {
@@ -86,4 +85,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub[i] = '\0';
 	return (sub);
 }
-

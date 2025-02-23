@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 20:59:51 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/20 23:19:15 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/21 00:16:57 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	buff;
-	size_t	i;
-	size_t	j;
-	char	*new_str;
+	char *result;
+    size_t len1;
+    size_t len2;
 
-	if (!s1 || !s2)
-		return (NULL);
-	buff = ft_strlen(s1) + ft_strlen(s2) + 1;
-	i = 0;
-	j = 0;
-	new_str = malloc(sizeof(char) * buff);
-	if (!new_str)
-		return (NULL);
-	while (s1[i])
-	{
-		new_str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		new_str[i++] = s2[j++];
-	}
-	new_str[i + j] = '\0';
-	return (new_str);
+    if (!s1 || !s2)
+        return (NULL);
+    len1 = ft_strlen(s1);
+    len2 = ft_strlen(s2);
+    result = malloc(sizeof(char) * (len1 + len2 + 1));
+    if (!result)
+        return (NULL);
+    ft_memcpy(result, s1, len1);
+    ft_memcpy(result + len1, s2, len2);
+    result[len1 + len2] = '\0';
+    return (result);
 }
