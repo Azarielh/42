@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_deci.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:28:15 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/27 11:20:13 by jlacaze-         ###   ########.fr       */
+/*   Created: 2025/01/14 00:00:00 by jlacaze-          #+#    #+#             */
+/*   Updated: 2025/02/11 00:07:59 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-size_t	ft_putnbr_fd(int nb, int fd)
+// Need to be transform into putnbr_base
+long long	ft_putnbr_deci(unsigned long nb)
 {
-	unsigned int	unb;
-	size_t			len;
+	long long	unb;
+	long long	len;
 
 	len = 0;
-	if (nb < 0)
-	{
-		ft_putchar_fd('-', fd);
-		unb = -nb;
-		len++;
-	}
-	else
-		unb = nb;
+	unb = nb;
 	if (unb >= 10)
-		len += ft_putnbr_fd(unb / 10, fd);
-	len += ft_putchar_fd((unb % 10) + '0', fd);
+		len += ft_putnbr_deci(unb / 10);
+	len += ft_putchar_fd((unb % 10) + '0', 1);
 	return (len);
 }

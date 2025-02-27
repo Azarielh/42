@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:28:15 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/27 11:20:13 by jlacaze-         ###   ########.fr       */
+/*   Created: 2024/12/12 13:11:29 by jlacaze-          #+#    #+#             */
+/*   Updated: 2025/02/20 23:14:33 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+#define GET_NEXT_LINE_BONUS_H
+
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
-size_t	ft_putnbr_fd(int nb, int fd)
-{
-	unsigned int	unb;
-	size_t			len;
+// Taille du buffer pour les lectures
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 42
+#endif
 
-	len = 0;
-	if (nb < 0)
-	{
-		ft_putchar_fd('-', fd);
-		unb = -nb;
-		len++;
-	}
-	else
-		unb = nb;
-	if (unb >= 10)
-		len += ft_putnbr_fd(unb / 10, fd);
-	len += ft_putchar_fd((unb % 10) + '0', fd);
-	return (len);
-}
+char 	*get_next_line(int fd);
+int 	ft_eol_finder(const char *str);
+char	*ft_gnl_strjoin(char *old_stack, char *buffer);
+#endif

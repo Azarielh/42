@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 06:35:11 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/23 07:12:35 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:13:09 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void execute_command(char *cmd, char **envp) {
 }
 
 int main(int argc, char *argv[], char *envp[]) {
-    if (nb_args_check(argc, 4, "Usage: %s file cmd1 cmd2 ... file2\n") < 5) {
+    if (nb_args_check(argc, 4, "Usage: %s file cmd1 cmd2 ... file2\n")) {
         return EXIT_FAILURE;
     }
 

@@ -17,7 +17,7 @@ LIBFT_A = libft/libft.a
 # PRINTF
 #PRINTF_DIR =printf/
 
-SRC = pipex.c\
+SRC = bispipex.c\
 
 OBJS = $(SRC:.c=.o)
 

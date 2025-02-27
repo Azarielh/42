@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_are_u_1_of_u.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 21:28:15 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/27 11:20:13 by jlacaze-         ###   ########.fr       */
+/*   Created: 2025/02/17 15:24:55 by jlacaze-          #+#    #+#             */
+/*   Updated: 2025/02/17 15:28:06 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-
-size_t	ft_putnbr_fd(int nb, int fd)
+int	ft_are_u_1_of_u(char c, char *str)
 {
-	unsigned int	unb;
-	size_t			len;
-
-	len = 0;
-	if (nb < 0)
+	while (*str)
 	{
-		ft_putchar_fd('-', fd);
-		unb = -nb;
-		len++;
+		if (*str == c)
+			return (1);
+		str++;
 	}
-	else
-		unb = nb;
-	if (unb >= 10)
-		len += ft_putnbr_fd(unb / 10, fd);
-	len += ft_putchar_fd((unb % 10) + '0', fd);
-	return (len);
+	return (0);
 }
