@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bispipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:14:21 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/02/26 10:11:03 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/03/01 23:19:19 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int ope_n_check(char *file, int flags, int mod)
         return (fd); 
     }
     perror("Failure while opening ");
-    return (-1);
+    return (fd);
 }
 
 void close_it_all(int fd_count, ...)
@@ -151,7 +151,7 @@ void get_a_child(char **cmd, char *file_src, char *file_dest, char **env)
     // ======  GET CHILD  ======
     else 
     {
-        ft_printf("Process id are opened and safe\n");
+        ft_printf("Process id %i are opened and safe\n", child);
         if (i == 2)
             dup2(fd_in, STDIN_FILENO);
         else

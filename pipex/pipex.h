@@ -13,6 +13,7 @@
 #define PIPEX_H
 
 #include "libft.h"
+#include "ansi_format.h"
 #include <fcntl.h>
 
 /*
@@ -105,7 +106,7 @@ void get_a_child(char **cmd, char *file_src, char *file_dest, char **env);
  * 
  * @param fd_count is the number of fd you'll write in h
  */
-void close_it_all(int fd_count, ...)
+void close_it_all(int fd_count, ...);
 #define RESET "\x1b[0m"
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
