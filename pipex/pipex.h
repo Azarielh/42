@@ -75,7 +75,7 @@ int nb_args_check(int argc, int nb);
 int env_in_here(char **env);
 
 /**
- * @brief This is a boolean function. is_pid_safe is meant to secure your subprocess, usually run with fork(). If it find an error, it will close the two file directory passed in argument.
+ * @brief This is a boolean function. is_pid_safe is meant to secure your subprocess, usually run with fork(). If it find an error, it will close the two file directory passed in argument and quit the program with exit(EXIT_FAILURE).
  * 
  * @param pid is the process id we want to run.
  * @param fd_in is the fd where we want to read intel from
@@ -86,7 +86,7 @@ int env_in_here(char **env);
 int is_pid_safe(pid_t pid, int fd_in, int fd_out);
 
 /**
- * @brief This function will open your file with the intended flags passed onto in arguments. Then, it will checks out if the open function worked fine or not.
+ * @brief This function will open your file with the intended flags passed onto in arguments. Then, it will checks out if the open function worked fine or not. If something went wrong, it will quit the program with exit(EXIT_FAILURE).
  * 
  * @param file The file you want to open
  * @param flags All flags you intend to open your file with. 
@@ -107,6 +107,9 @@ void get_a_child(char **cmd, char *file_src, char *file_dest, char **env);
  * @param fd_count is the number of fd you'll write in h
  */
 void close_it_all(int fd_count, ...);
+
+void execute(char *argv, char **env);
+
 #define RESET "\x1b[0m"
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"

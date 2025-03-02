@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:14:21 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/01 23:19:19 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/03/02 20:10:13 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/wait.h>
 
 // ______________________________Check before processing input
 
@@ -23,6 +24,7 @@ int env_in_here(char **env)
     if (!env)
     {
         ft_printf("Your env is missing. No Env = no pipex");
+        exit(EXIT_FAILURE);
         return (1);
     }
     return (0);
@@ -47,6 +49,7 @@ int is_pid_safe(pid_t pid, int fd_in, int fd_out)
         perror("fork error");
         close(fd_in);
         close(fd_out);
+        exit(EXIT_FAILURE);
         return (0);
     }
     return (1);
@@ -67,6 +70,7 @@ int ope_n_check(char *file, int flags, int mod)
         return (fd); 
     }
     perror("Failure while opening ");
+    exit(EXIT_FAILURE);
     return (fd);
 }
 
@@ -123,42 +127,38 @@ char *find_command_path(char *cmd, char **env)
 void get_a_child(char **cmd, char *file_src, char *file_dest, char **env)
 {
     ft_printf(YELLOW"Entrée dans la fonction get_a_child\n"RESET);
-    int i;
+    //int i;
     int fd_in;
     int fd_out;
     int pipefd[2];
-    char *path;
     char *cmd_path;
     pid_t child;
 
-    i = 0;
+    //i = 0;
     fd_in = ope_n_check (file_src, O_RDONLY, 0);
     fd_out = ope_n_check (file_dest, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    path = getent_from_env(env, "PATH=");
     cmd_path = find_command_path(cmd[0], env);
+
     while (*cmd != file_dest)
-        ft_printf(YELLOW"cmd :"RESET"%s\n", *cmd++);
-
-    // ======  FD CHECK  ======
-    if (fd_in == -1 || fd_out == -1)
-        exit(EXIT_FAILURE);
-
-    // ======  PID CHECK  ======
-    child = fork();
-
-    if (!is_pid_safe(child, fd_in, fd_out))
-        exit(EXIT_FAILURE);
-    // ======  GET CHILD  ======
-    else 
     {
-        ft_printf("Process id %i are opened and safe\n", child);
-        if (i == 2)
-            dup2(fd_in, STDIN_FILENO);
-        else
-            dup2(pipefd[1], STDOUT_FILENO);
+        ft_printf(YELLOW"cmd :"RESET"%s\n", *cmd++);
+        child = fork(); // Create child process
+
+        if (is_pid_safe(child, fd_in, fd_out))
+        {
+            ft_printf("Process id %i are opened and safe\n", child);
+            if (child == 0)
+            {
+                dup2(fd_in, STDIN_FILENO);
+                dup2(fd_out, STDOUT_FILENO);                
+                execve(cmd_path, cmd, env);
+            } else
+                waitpid(child, NULL, 0);
+        }   else 
+                close_it_all(fd_in, fd_out, pipefd[0], pipefd[1]);
     }
-    close_it_all(fd_in, fd_out, pipefd[0], pipefd[1]); 
 }
+
 
 int main(int argc, char **argv, char **env)
 {
@@ -171,12 +171,8 @@ int main(int argc, char **argv, char **env)
 
     i = 0;
     cmd = argv + 2;
-    while (i++ < argc - 1)
-        ft_printf(YELLOW"Argument n %d:"RESET" %s\n", i, argv[i]);
-
     file_src = argv[1];
     file_dest = argv[argc - 1];
-    ft_printf(BLUE"File_src : "RESET"%s\n"BLUE"File_dest : "RESET"%s\n", file_src, file_dest);
 
     get_a_child(cmd, file_src, file_dest, env);
     return (EXIT_SUCCESS);
