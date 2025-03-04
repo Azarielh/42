@@ -14,10 +14,10 @@ NAME = pipex
 LIBFT_DIR = libft/
 LIBFT_A = libft/libft.a
 
-# PRINTF
-#PRINTF_DIR =printf/
-
 SRC = pipex.c\
+	utils.c\
+	ft_split2.c\
+	execute.c
 
 OBJS = $(SRC:.c=.o)
 
