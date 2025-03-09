@@ -6,13 +6,13 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 20:30:28 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/04 20:30:44 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:09:29 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	create_child(char *arg, char **envp)
+void	create_child(char *arg, char **env)
 {
 	int		pipe_fd[2];
 	int		pid;
@@ -27,7 +27,7 @@ void	create_child(char *arg, char **envp)
 		close(pipe_fd[READ_END]);
 		dup2(pipe_fd[WRITE_END], STDOUT_FILENO);
 		close(pipe_fd[WRITE_END]);
-		exec_cmd(arg, envp);
+		exec_cmd(arg, env);
 	}
 	else
 	{
@@ -80,12 +80,12 @@ void	open_files(t_pipex *pipex, int argc, char **argv)
 	dup2(pipex->infile, STDIN_FILENO);
 }
 
-void	last_command(int argc, char **argv, char **envp, t_pipex pipex)
+void	last_command(int argc, char **argv, char **env, t_pipex pipex)
 {
 	close(pipex.infile);
 	if (argc >= 6 && ft_strncmp(argv[1], "here_doc", 8) == 0)
 		delete_tmp_file(pipex.infile_name);
 	dup2(pipex.outfile, STDOUT_FILENO);
-	exec_cmd(argv[argc - 2], envp);
+	exec_cmd(argv[argc - 2], env);
 	print_error("execve failed", 1);
 }

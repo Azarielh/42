@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 20:43:54 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/04 20:44:15 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:37:09 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-char	**get_env_paths(char **envp)
+char	**getent_env(char **env, char *key)
 {
 	char	**paths;
 	int		i;
 
 	i = 0;
 	paths = NULL;
-	while (envp[i])
+	while (env[i])
 	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+		if (ft_strncmp(env[i], key, 5) == 0)
 		{
-			paths = ft_split(envp[i] + 5, ':');
+			paths = ft_split(env[i] + 5, ':');
 			break ;
 		}
 		i++;
@@ -44,13 +44,13 @@ char	**get_env_paths(char **envp)
 	return (paths);
 }
 
-char	*get_path(char *cmd, char **envp)
+char	*get_path(char *cmd, char **env)
 {
 	char	**paths;
 	char	*path;
 	int		i;
 
-	paths = get_env_paths(envp);
+	paths = getent_env(env, "PATH=");
 	i = 0;
 	while (paths[i++])
 	{
@@ -67,18 +67,18 @@ char	*get_path(char *cmd, char **envp)
 	return (NULL);
 }
 
-void	exec_cmd(char *arg, char **envp)
+void	exec_cmd(char *arg, char **env)
 {
 	char	*path;
 	char	**cmd_args;
 
 	cmd_args = ft_split_v2(arg, ' ');
-	path = get_path(cmd_args[0], envp);
+	path = get_path(cmd_args[0], env);
 	if (path == NULL)
 	{
 		free_arr(cmd_args);
 		print_error("command not found", 1);
 	}
-	execve(path, cmd_args, envp);
+	execve(path, cmd_args, env);
 	print_error("execve failed", 1);
 }
