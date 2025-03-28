@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 20:42:47 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/04 20:45:32 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:30:34 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	fill_word(char *dest, const char *src, int len)
 	dest[i] = '\0';
 }
 
-static void	jump_apex(int *i, const char *str, char **split, int word)
+static void	jump_quote(int *i, const char *str, char **split, int word)
 {
 	int		len;
 	char	c;
@@ -77,8 +77,8 @@ static int	fill_split_v2(char **split, const char *str, char c)
 	{
 		if (str[i] == c || str[i] == '\0')
 			i++;
-		else if (str[i] == '\'' || str[i] == '\"')
-			jump_apex(&i, str, split, word++);
+		else if (str[i] == '\'' || str[i] == '\"' )
+			jump_quote(&i, str, split, word++);
 		else
 		{
 			len = 1;

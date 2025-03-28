@@ -24,9 +24,9 @@ OBJS = $(SRC:.c=.o)
 # Setting up an custom error message
 ERROR_MSG = "$(RED)[ERROR] Compilation failed$(RESET)"
 
-all: $(LIBFT) $(OBJS) $(NAME)
+all: $(NAME)
 
-%.o: %.c
+%.o: %.c pipex.h libft.h
 	@echo -n "$(BLUE) $@ $(RESET)"
 	@cc $(CFLAGS) -I . $< -c -o $@ && echo "$(GREEN)>>> SUCCESS $(RESET)" || { echo "$(ERROR_MSG)"; exit 1; }
 

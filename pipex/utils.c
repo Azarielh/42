@@ -6,37 +6,39 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 20:30:28 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/09 16:09:29 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:23:44 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	create_child(char *arg, char **env)
+void	create_child(char *cmd, char **env, int fd_in)
 {
 	int		pipe_fd[2];
 	int		pid;
 
 	if (pipe(pipe_fd) == -1)
-		print_error("pipe failed", -1);
+		print_error("pipe failed", 1);
 	pid = fork();
 	if (pid == -1)
-		print_error("fork failed", -1);
+		print_error("fork failed", 1);
 	if (pid == 0)
 	{
 		close(pipe_fd[READ_END]);
 		dup2(pipe_fd[WRITE_END], STDOUT_FILENO);
 		close(pipe_fd[WRITE_END]);
-		exec_cmd(arg, env);
+		if (fd_in == -1)
+			print_error("open infile failed", 1);
+		exec_cmd(cmd, env);
 	}
 	else
 	{
 		close(pipe_fd[WRITE_END]);
 		dup2(pipe_fd[READ_END], STDIN_FILENO);
 		close(pipe_fd[READ_END]);
-		waitpid(pid, NULL, 0);
 	}
 }
+// valgrind --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full ./pipex Makefile cat cat bonjour
 
 void	delete_tmp_file(char *infile_name)
 {
@@ -69,23 +71,34 @@ void	write_here_doc(char *limiter, char *infile_name)
 	close(infile);
 }
 
-void	open_files(t_pipex *pipex, int argc, char **argv)
+int	open_files(t_pipex *pipex, int argc, char **argv)
 {
 	pipex->infile = open(pipex->infile_name, O_RDONLY);
-	if (pipex->infile == -1)
-		print_error("open infile failed", -1);
 	pipex->outfile = open(argv[argc - 1], pipex->flags, 0644);
-	if (pipex->outfile == -1)
-		print_error("open outfile failed", -1);
 	dup2(pipex->infile, STDIN_FILENO);
+	return (pipex->infile);
 }
 
-void	last_command(int argc, char **argv, char **env, t_pipex pipex)
+pid_t	last_command(int argc, char **argv, char **env, t_pipex pipex)
 {
+	int pid;
 	close(pipex.infile);
-	if (argc >= 6 && ft_strncmp(argv[1], "here_doc", 8) == 0)
+	if (argc >= 6 && ft_strncmp(argv[1], "here_doc\0", 9) == 0)
 		delete_tmp_file(pipex.infile_name);
-	dup2(pipex.outfile, STDOUT_FILENO);
-	exec_cmd(argv[argc - 2], env);
-	print_error("execve failed", 1);
+	if (pipex.outfile == -1)
+	{
+		pid = 0;
+		while (pid != -1)
+			pid = wait(NULL);
+		print_error("open outfile failed", 1);
+	}
+	pid = fork();
+	if (pid == -1)
+		print_error("fork failed", 1);
+	if (pid == 0)
+	{
+		dup2(pipex.outfile, STDOUT_FILENO);
+		exec_cmd(argv[argc - 2], env);
+	}
+	return (pid);
 }
