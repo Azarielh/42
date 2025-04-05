@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
@@ -17,7 +17,11 @@ void	print_error(char *msg, int exit_code)
 	ft_putstr_fd("Error: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
-	unlink(".here_doc");
+	if (unlink(".here_doc") == -1 && errno != ENOENT)
+	{
+		perror("unlink failed");
+		exit(EXIT_FAILURE);
+	}
 	if (errno != 0)
 		perror(msg);
 	exit(exit_code);
