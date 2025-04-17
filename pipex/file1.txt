@@ -2,7 +2,7 @@ Lien de testeur : https://github.com/michmos/42_pipex_tester
 
 Un prompt envoye à mistral ai : 
 genère moi un texte a la con a mettre dans mon fichier de test pour pipex. 
-Il doit absurde avec une petite pointe de glauque et d un minimum de 50 ligne. 
+Il doit etre absurde avec une petite pointe de glauque et d un minimum de 50 ligne. 
 
 Et la reponse du dit LLM : 
 

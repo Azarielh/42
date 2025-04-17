@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 20:29:38 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/28 23:00:34 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:33:30 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,23 @@ int	main(int argc, char **argv, char **envp)
 	pipex.infile_name = argv[1];
 	pipex.flags = O_WRONLY | O_CREAT | O_TRUNC;
 	check_here_doc(argc, argv, &pipex, &i);
-	int fd_in = open_files(&pipex, argc, argv);
+	open_files(&pipex, argc, argv);
 	while (i < argc - 2)
-	{
-		create_child(argv[i], envp, fd_in);
-		i++;
-	}
+		create_child(argv[i++], envp, pipex.infile);
 	last_pid = last_command(argc, argv, envp, pipex);
 	pid = 0;
 	exitcode = 1;
+	printf("last_pid: %d (%d)\n", last_pid, getpid());
 	while (pid != -1)
 	{
 		pid = wait(&status);
+		printf("pid: %d (exit %d) (signal %d)\n", pid, WIFEXITED(status), WIFSIGNALED(status));
 		if (pid == last_pid && WIFEXITED(status))
 			exitcode = WEXITSTATUS(status);
 		if (pid == last_pid && WIFSIGNALED(status))
 			exitcode = 128 + WTERMSIG(status);
 	}
+	close(pipex.infile);
+	close(pipex.outfile);
 	return (exitcode);
 }

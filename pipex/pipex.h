@@ -17,10 +17,10 @@
  * @brief The t_pipex struc is meant to make your life easier while coding the so called function. You can store here every args separatly depending on what it is (infile, commands and outfile).
  * 
  * item :
- * -> infile      : The file we want to work with.
- * -> outfile     : The file we want the result in.
- * -> flags       : The flqgs to use while opening files.
- * -> infile_name : 
+ * -> infile      : The fd returned by 'open' while opening our input file.
+ * -> outfile     : The fd's file we want the result in.
+ * -> flags       : The flags to use while opening files.
+ * -> infile_name : The file's name used as an input.
  */
 typedef struct s_pipex
 {
@@ -33,7 +33,7 @@ typedef struct s_pipex
  * @brief This is an error printer function. It works with perror
  * 
  * @param msg The error message you wanna print
- * @param exit_code 
+ * @param exit_code Those are the error code we want to return
  */
 void print_error(char *msg, int exit_code);
 /**

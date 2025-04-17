@@ -6,7 +6,7 @@
 /*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 20:30:28 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/03/28 23:23:44 by jlacaze-         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:48:51 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ void	create_child(char *cmd, char **env, int fd_in)
 		print_error("fork failed", 1);
 	if (pid == 0)
 	{
-		close(pipe_fd[READ_END]);
-		dup2(pipe_fd[WRITE_END], STDOUT_FILENO);
-		close(pipe_fd[WRITE_END]);
+		if (dup2(pipe_fd[WRITE_END], STDOUT_FILENO) ==  -1)
+			print_error("Dup2 failed in create child", 1);
 		if (fd_in == -1)
 			print_error("open infile failed", 1);
+		close(pipe_fd[WRITE_END]);
+		close(pipe_fd[READ_END]);
 		exec_cmd(cmd, env);
 	}
 	else
 	{
 		close(pipe_fd[WRITE_END]);
-		dup2(pipe_fd[READ_END], STDIN_FILENO);
+		if (dup2(pipe_fd[READ_END], STDIN_FILENO) == -1)
+			print_error("Dup2 failed in create child", 1);
 		close(pipe_fd[READ_END]);
 	}
 }
@@ -82,7 +84,7 @@ int	open_files(t_pipex *pipex, int argc, char **argv)
 pid_t	last_command(int argc, char **argv, char **env, t_pipex pipex)
 {
 	int pid;
-	close(pipex.infile);
+
 	if (argc >= 6 && ft_strncmp(argv[1], "here_doc\0", 9) == 0)
 		delete_tmp_file(pipex.infile_name);
 	if (pipex.outfile == -1)
@@ -97,8 +99,12 @@ pid_t	last_command(int argc, char **argv, char **env, t_pipex pipex)
 		print_error("fork failed", 1);
 	if (pid == 0)
 	{
+		ft_printf("avt dup2\n");
 		dup2(pipex.outfile, STDOUT_FILENO);
+		close(pipex.outfile);
+		ft_printf("ap dup2\n");
 		exec_cmd(argv[argc - 2], env);
+		ft_printf("ap exec\n");
 	}
 	return (pid);
 }
