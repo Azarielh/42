@@ -1,7 +1,7 @@
 .PHONY: all clean fclean re
 
 # General 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 NAME = pipex
 
 #___________ SRCS _____________
@@ -10,10 +10,7 @@ NAME = pipex
 LIBFT_DIR = libft/
 LIBFT_A = libft/libft.a
 
-SRC = pipex.c\
-	utils.c\
-	ft_split2.c\
-	execute.c
+SRC = pipex.c
 
 OBJS = $(SRC:.c=.o)
 

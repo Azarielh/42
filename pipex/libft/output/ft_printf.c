@@ -16,7 +16,6 @@
 #include <unistd.h>
 #include "libft.h"
 
-
 int	select_flag_n_print(char flag, va_list args)
 {
 	int				len;

@@ -10,7 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
+
+static void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
 
 static int	count_words(const char *str, char c)
 {
@@ -21,16 +31,10 @@ static int	count_words(const char *str, char c)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			i++;
-			while (str[i] != '\'' && str[i] != '\"' && str[i])
-				i++;
-		}
-		if ((str[i] != c && str[i])
-			&& (str[i + 1] == c || str[i + 1] == '\0'))
-			count++;
-		i++;
+		while (str[i++] == ' ')
+			while (str[i] && str[i] != c && str[i++] != ' ')
+				;
+		count++;
 	}
 	return (count);
 }
@@ -48,23 +52,6 @@ static void	fill_word(char *dest, const char *src, int len)
 	dest[i] = '\0';
 }
 
-static void	jump_quote(int *i, const char *str, char **split, int word)
-{
-	int		len;
-	char	c;
-
-	len = 0;
-	c = str[*i];
-	(*i)++;
-	while (str[(*i) + len] != c && str[(*i) + len])
-		len++;
-	split[word] = (char *) malloc(sizeof(char) * (len + 1));
-	if (!split[word])
-		return (free_arr(split));
-	fill_word(split[word++], &str[*i], len);
-	(*i) += len + 1;
-}
-
 static int	fill_split_v2(char **split, const char *str, char c)
 {
 	int	word;
@@ -77,14 +64,12 @@ static int	fill_split_v2(char **split, const char *str, char c)
 	{
 		if (str[i] == c || str[i] == '\0')
 			i++;
-		else if (str[i] == '\'' || str[i] == '\"' )
-			jump_quote(&i, str, split, word++);
 		else
 		{
 			len = 1;
 			while (str[i + len] != c && str[i + len])
 				len++;
-			split[word] = (char *) malloc(sizeof(char) * (len + 1));
+			split[word] = (char *)malloc(sizeof(char) * (len + 1));
 			if (!split[word])
 				return (free_arr(split), 0);
 			fill_word(split[word++], &str[i], len);
@@ -102,7 +87,7 @@ char	**ft_split_v2(const char *str, char c)
 	if (!str)
 		return (NULL);
 	words = count_words(str, c);
-	split = (char **) malloc(sizeof(char *) * (words + 1));
+	split = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!split)
 		return (NULL);
 	split[words] = NULL;

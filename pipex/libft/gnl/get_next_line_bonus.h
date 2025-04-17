@@ -11,18 +11,18 @@
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
-#define GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 // Taille du buffer pour les lectures
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-char 	*get_next_line(int fd);
-int 	ft_eol_finder(const char *str);
+char	*get_next_line(int fd);
+int		ft_eol_finder(const char *str);
 char	*ft_gnl_strjoin(char *old_stack, char *buffer);
 #endif

@@ -24,7 +24,8 @@ DIR_STR_MANIPULATION = str_manipulation/ft_strjoin.c\
 		str_manipulation/ft_strlcpy.c\
 		str_manipulation/ft_strlcat.c\
 		str_manipulation/ft_strdup.c\
-		str_manipulation/ft_putendl_fd.c
+		str_manipulation/ft_putendl_fd.c\
+		str_manipulation/ft_split2.c
 
 
 DIR_STR_ANALYSIS = str_analysis/ft_strlen.c\

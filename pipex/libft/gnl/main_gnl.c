@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlacaze- <jlacaze-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 13:10:22 by jlacaze-          #+#    #+#             */
+/*   Updated: 2024/12/27 14:34:30 by jlacaze-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -12,7 +24,6 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 		return ("You forgot to input arguments");
-
 	files_left = 0;
 	for (i = 1; i < ac; i++)
 	{
@@ -28,7 +39,7 @@ int	main(int ac, char **av)
 		{
 			printf("File %d is empty or reading failed.\n", i);
 			lines[i - 1] = get_next_line(fd[i - 1]);
-			printf("File %d: %s\n", i, lines[i - 1]);        
+			printf("File %d: %s\n", i, lines[i - 1]);
 			close(fd[i - 1]);
 			files_left--;
 		}
