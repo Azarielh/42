@@ -11,10 +11,19 @@ NAME = push_swap
 #___________ SRCS _____________
 
 # LIBFT
-LIBFT_DIR = libft/
-LIBFT_A = libft/libft.a
+LIBFT_DIR = includes/libft/
+LIBFT_A = includes/libft/libft.a
 
 SRC = push_swap.c\
+	includes/checking/is_valid_int_list.c\
+	includes/checking/has_no_double.c\
+	includes/checking/is_signed_int.c\
+	includes/checking/is_valid_int.c\
+	includes/checking/ft_isdigit2.c\
+	includes/tools/ft_strcpy.c\
+	includes/tools/ft_strswap.c\
+	includes/ft_atol.c\
+	includes/sorting/swap/sa.c\
 
 OBJS = $(SRC:.c=.o)
 

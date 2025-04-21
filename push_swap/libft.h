@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jlacaze- <jlacaze-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:19:21 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/04/20 20:24:24 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/01 23:04:42 by jlacaze-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@
  /**
   * @brief Adds the element new_elem at the end of the list **lst
   *
-  * @param lst The address of a pointer to the last link of a list.
+  * @param lst The address of a pointer to the first link of a list.
   * @param new_elem The address of a pointer to the element to be added to the list.
   */
  void ft_lstadd_back(t_list **lst, t_list *new_elem);
