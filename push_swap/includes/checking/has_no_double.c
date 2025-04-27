@@ -25,7 +25,6 @@ int has_no_double(char **args)
     int i;
 
     index = 1;
-    ft_printf("Entering 'has_no_double' function\nStarting at args[%d] : %s\n", index, args[index]);
     while (args[index])
     {
         i = 1;
@@ -33,7 +32,6 @@ int has_no_double(char **args)
         while (args[index + i])
         {
             temp = ft_atol(args[index + i++], &error);
-            ft_printf("%d compared to %d\n", value, temp);
             if (value == temp)
                 return (0);
         }

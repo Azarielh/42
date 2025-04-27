@@ -23,7 +23,13 @@ SRC = push_swap.c\
 	includes/tools/ft_strcpy.c\
 	includes/tools/ft_strswap.c\
 	includes/ft_atol.c\
+	includes/parsing/list_to_struct.c\
 	includes/sorting/swap/sa.c\
+	includes/sorting/swap/sb.c\
+	includes/sorting/swap/ss.c\
+	includes/sorting/push/pb.c\
+	includes/sorting/push/pa.c\
+
 
 OBJS = $(SRC:.c=.o)
 

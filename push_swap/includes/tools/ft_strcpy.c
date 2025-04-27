@@ -6,12 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 22:22:47 by codespace         #+#    #+#             */
-/*   Updated: 2025/04/20 00:06:48 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/21 13:37:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
-#include "../../libft.h"
+#include "push_swap.h"
+#include "libft.h"
 
 char *ft_strcpy(char *str, char *dest)
 {

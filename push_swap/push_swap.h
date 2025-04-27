@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:34:38 by jlacaze-          #+#    #+#             */
-/*   Updated: 2025/04/20 19:17:34 by codespace        ###   ########.fr       */
+/*   Updated: 2025/04/27 17:01:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ typedef struct stack_intel
     int                 index;
     int                 gap_from_max;
     struct stack_intel  *next;
-}                       t_stack_intel;
+}                       t_stack;
 
 typedef struct pile
 {
-  int                   len_a;
-  char                  *pile_b;
+  int 					len_a;
+  int 					len_b;
+  int					*pile_a;
+  int					*pile_b;
 }                       t_pile;
 
-int                     ft_perror(char *error_msg);
+int                     ft_perror(char *error_msg, int exitcode);
 long                    ft_atol(const char *str, int *error);
 int                     ft_isdigit2(char *str);
 int                     is_signed_int(char sign);
@@ -84,13 +86,12 @@ int is_valid_int_list(char **args, int argc);
   * @return int 1 if there is no double. 0 otherwise.
   */
  int has_no_double(char **args);
- int ft_perror(char *error_msg);
 
   /*
  ______________________________________________________________________
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
- *                               SORTING
+ *                               MOVE
  *
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
@@ -99,38 +100,39 @@ int is_valid_int_list(char **args, int argc);
  * 
  * @param stack The stack to swap.
  * 
- */ void sa(char **stack_a);
+ */ 
+void sa(t_pile *pile);
 
-// /**
-//  * @brief inverts the position of the two first elements of the b stack.
-//  * 
-//  * @param stack The stack to swap.
-//  * 
-//  */ void sb(t_list **stack_b);
+/**
+ * @brief inverts the position of the two first elements of the b stack.
+ * 
+ * @param stack The stack to swap.
+ * 
+ */ void sb(t_pile *pile);
 
-// /**
-//  * @brief inverts the position of the two first elements of the a and b stacks.
-//  * 
-//  * @param stack_a The stack to swap.
-//  * @param stack_b The stack to swap.
-//  * 
-//  */ void ss(t_list **stack_a, t_list **stack_b);
+/**
+ * @brief inverts the position of the two first elements of the a and b stacks.
+ * 
+ * @param stack_a The stack to swap.
+ * @param stack_b The stack to swap.
+ * 
+ */ void ss(t_pile *pile);
 
-// /**
-//  * @brief pushes the first element of the a stack to the b stack.
-//  * 
-//  * @param stack_a The stack to push from.
-//  * @param stack_b The stack to push to.
-//  * 
-//  */ void pa(t_list **stack_a, t_list **stack_b);
+/**
+ * @brief pushes the first element of the a stack to the b stack.
+ * 
+ * @param stack_a The stack to push from.
+ * @param stack_b The stack to push to.
+ * 
+ */ void pb(t_pile *pile);
 
-// /**
-//  * @brief pushes the first element of the b stack to the a stack.
-//  * 
-//  * @param stack_a The stack to push to.
-//  * @param stack_b The stack to push from.
-//  * 
-//  */ void pb(t_list **stack_a, t_list **stack_b);
+/**
+ * @brief pushes the first element of the b stack to the a stack.
+ * 
+ * @param stack_a The stack to push to.
+ * @param stack_b The stack to push from.
+ * 
+ */ void pa(t_pile *pile);
 
 //  /**
 //   * @brief rotates the a stack.
@@ -175,6 +177,23 @@ int is_valid_int_list(char **args, int argc);
 //  * @param stack_b The stack to reverse rotate.
 //  * 
 //  */ void rrr(t_list **stack_a, t_list **stack_b);
+/*
+ ______________________________________________________________________
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ *                               TOOLS
+ *
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+/**
+ * @brief This function takes an adress within a struct
+ * and fill it as it comes in the same orders.
+ * @param **args
+ * @param pile_adress the adress within the structure where we want
+ * to copy
+ * @return it returns an int. 0 if it fails. 1 if it succeeds. 
+ */
+int					list_to_struct(char **args, t_pile *pile_adress, t_stack *intel);
   /*
  ______________________________________________________________________
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -201,6 +220,6 @@ int is_valid_int_list(char **args, int argc);
   * @param str2 Second str adress to switch
   * 
   * Might be interesting to return a bolean to secure success
-  */ void ft_strswap(char *str1, char *str2);
+  */ void           ft_strswap(char *str1, char *str2);
   
 #endif
