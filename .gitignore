@@ -1,3 +1,5 @@
 42_pipex_tester/
 outfiles/
+tmp/
 last_err_log.txt
+ft_switch.c
