@@ -1,6 +1,14 @@
+
+/**_______________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________
+   _______________________________________________________________________________________________________________________________________
+
+                                                    PROJET DE FONCTION SWITCH
+__________________________________________________________________________________________________________________________________________
+*/
+
 #include <stdio.h>
 
-// Exemple de fonctions
 int *f(char *c, int *d, char *g) {
   *c = '\0';
   *d = 4;
@@ -26,7 +34,7 @@ int *w(char *c, int *d, char *g) {
 }
 
 // Fonction "switch" utilisant un tableau de pointeurs de fonction
-void truc(int type, char *c, int *d, char *g, int *(*pointeur[])(char*, int*, char*)) {
+void ft_switch(int type, char *c, int *d, char *g, int *(*pointeur[])(char*, int*, char*)) {
   if (type >= 0 && type < 3) { // Vérifie que le type est valide
     int *result = pointeur[type](c, d, g);
     printf("Résultat de la fonction : %d\n", *result);
@@ -50,7 +58,7 @@ int main() {
   int d;
   char e;
 
-  // Tableau de pointeurs de fonction
+  // Créer un tableau de pointeurs de fonction
   int *(*pointeur[3])(char*, int*, char*) = {&f, &t, &w};
 
   // Appel de la fonction "switch"
